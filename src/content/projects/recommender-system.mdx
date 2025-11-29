@@ -1,0 +1,39 @@
+---
+title: Recommender System using Goodbooks-10k
+description: A collaborative filtering recommender system built with Python and Scikit-Learn using the Goodbooks-10k dataset.
+date: '2023-01-01'
+tags: ['Python', 'Machine Learning', 'Scikit-Learn']
+---
+
+# Recommender System using Goodbooks-10k
+
+This project demonstrates how to build a recommender system using the Goodbooks-10k dataset.
+
+## Overview
+
+The goal of this project is to recommend books to users based on their reading history and ratings. We use collaborative filtering techniques to find similar users or items.
+
+## Technologies Used
+
+- **Python**: The core programming language.
+- **Pandas**: For data manipulation.
+- **Scikit-Learn**: For implementing the recommendation algorithms (KNN, SVD).
+- **Streamlit**: For creating a simple web interface (optional).
+
+## Methodology
+
+1. **Data Cleaning**: Handling missing values and filtering out users with few ratings.
+2. **Exploratory Data Analysis (EDA)**: Understanding the distribution of ratings and popular books.
+3. **Model Building**:
+    - **User-Based Collaborative Filtering**: Recommending books liked by similar users.
+    - **Item-Based Collaborative Filtering**: Recommending books similar to those the user liked.
+    - **Matrix Factorization (SVD)**: Reducing dimensionality to find latent features.
+
+## Results
+
+The SVD model achieved an RMSE of 0.85 on the test set, providing accurate recommendations.
+
+## Future Work
+
+- Implement deep learning based recommenders (Neural Collaborative Filtering).
+- Add a hybrid approach combining content-based and collaborative filtering.
