@@ -80,7 +80,7 @@ export const sidebarConfig: SidebarGroup[] = [
             },
             {
                 name: "Kaggle",
-                href: "https://kaggle.com/geobatpo07",
+                href: "https://kaggle.com/geobatpo7",
                 icon: BarChart3,
                 external: true,
             },
