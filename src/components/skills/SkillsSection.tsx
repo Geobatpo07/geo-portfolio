@@ -24,7 +24,7 @@ const skills = {
     languages: [
         { name: "Python", icon: Code, level: "Expert" },
         { name: "SQL", icon: Database, level: "Expert" },
-        { name: "TypeScript", icon: Layout, level: "Advanced" },
+        { name: "TypeScript", icon: Layout, level: "Beginner" },
         { name: "Java", icon: Code, level: "Intermediate" },
         { name: "R", icon: BarChart, level: "Intermediate" },
     ],
