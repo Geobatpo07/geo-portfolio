@@ -36,7 +36,7 @@ export function HeroSection() {
                     <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
                         Geovany
                     </span>
-                    <br className="hidden sm:inline" />
+                    <br />
                     <span className="text-foreground/90">Data Science & Analytics Engineer.</span>
                 </h1>
 
