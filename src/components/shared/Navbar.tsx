@@ -1,57 +1,44 @@
 "use client"
 
-import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/shared/ThemeToggle"
-import { Button } from "@/components/ui/button"
-import { Menu, Sparkles } from "lucide-react"
-import {
-    Sheet,
-    SheetContent,
-    SheetTrigger,
-} from "@/components/ui/sheet"
+import { MobileSidebar } from "@/components/shared/MobileSidebar"
+import { Sparkles } from "lucide-react"
 
 const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
-    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
     const pathname = usePathname()
-    const [isOpen, setIsOpen] = React.useState(false)
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-background/60 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/40">
             <div className="container flex h-16 items-center justify-between">
                 <div className="mr-4 hidden md:flex">
-                    <Link href="/" className="mr-6 flex items-center space-x-2 group">
-                        <div className="p-1.5 rounded-lg bg-gradient-to-br from-primary to-purple-600">
-                            <Sparkles className="h-5 w-5 text-white" />
+                    <Link href="/" className="mr-8 flex items-center space-x-3 group">
+                        <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-purple-500/20 group-hover:shadow-purple-500/40 transition-all duration-300">
+                            <Sparkles className="h-4 w-4 text-white" />
                         </div>
-                        <span className="hidden font-bold text-lg sm:inline-block group-hover:text-primary transition-colors">
-                            GeoPortfolio
+                        <span className="hidden font-bold text-lg tracking-tight sm:inline-block group-hover:text-primary transition-colors">
+                            Geo's Stories
                         </span>
                     </Link>
-                    <nav className="flex items-center space-x-6 text-sm font-medium">
+                    <nav className="flex items-center space-x-2 text-sm font-medium">
                         {navItems.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "transition-colors hover:text-primary relative group",
-                                    pathname === item.href ? "text-foreground" : "text-foreground/60"
+                                    "px-4 py-2 rounded-full transition-all duration-300 hover:bg-white/10 hover:text-primary relative group",
+                                    pathname === item.href ? "bg-white/10 text-primary shadow-sm" : "text-muted-foreground"
                                 )}
                             >
                                 {item.name}
-                                {pathname === item.href && (
-                                    <span className="absolute -bottom-[17px] left-0 right-0 h-0.5 bg-primary" />
-                                )}
-                                <span className="absolute -bottom-[17px] left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                             </Link>
                         ))}
                     </nav>
@@ -59,44 +46,16 @@ export function Navbar() {
 
                 <div className="flex md:hidden">
                     <Link href="/" className="flex items-center space-x-2">
-                        <div className="p-1.5 rounded-lg bg-gradient-to-br from-primary to-purple-600">
-                            <Sparkles className="h-5 w-5 text-white" />
+                        <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+                            <Sparkles className="h-4 w-4 text-white" />
                         </div>
-                        <span className="font-bold text-lg">GeoPortfolio</span>
+                        <span className="font-bold text-lg tracking-tight">Geo's Stories</span>
                     </Link>
                 </div>
 
-                <div className="flex flex-1 items-center justify-end space-x-2">
+                <div className="flex flex-1 items-center justify-end space-x-4">
                     <ThemeToggle />
-                    <div className="md:hidden">
-                        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon" className="md:hidden">
-                                    <Menu className="h-5 w-5" />
-                                    <span className="sr-only">Toggle Menu</span>
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                                <div className="flex flex-col space-y-4 mt-8">
-                                    {navItems.map((item) => (
-                                        <Link
-                                            key={item.href}
-                                            href={item.href}
-                                            className={cn(
-                                                "text-lg font-medium transition-colors hover:text-primary px-4 py-2 rounded-lg",
-                                                pathname === item.href
-                                                    ? "text-primary bg-primary/10"
-                                                    : "text-foreground/60 hover:bg-accent"
-                                            )}
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </div>
+                    <MobileSidebar />
                 </div>
             </div>
         </header>

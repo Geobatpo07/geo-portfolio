@@ -1,10 +1,132 @@
 ---
 title: Cyclone Modeling using ODE/PDE
-description: Mathematical modeling of cyclone paths using Ordinary and Partial Differential Equations.
+description: Mathematical modeling of cyclone dynamics through numerical solutions of Ordinary and Partial Differential Equations.
 date: '2023-01-01'
-tags: ['Math', 'Python', 'Modeling']
+tags: ['Math', 'Python', 'ODE', 'PDE', 'Scientific Computing', 'Modeling']
 ---
 
 # Cyclone Modeling using ODE/PDE
 
-Content coming soon...
+Cyclones are complex atmospheric phenomena driven by nonlinear interactions between pressure fields, temperature gradients, wind dynamics, and the Coriolis force.  
+During my M1 Research Internship, I worked on a project focused on **numerically simulating cyclone behavior** using both **Ordinary Differential Equations (ODEs)** and **Partial Differential Equations (PDEs)**.
+
+This work combined **mathematical modeling**, **numerical analysis**, and **scientific computing** to better understand the evolution of cyclone trajectories and their internal structure.
+
+---
+
+## 🌪️ Motivation
+
+Cyclones represent one of the most destructive natural events. Accurately modeling their formation and evolution requires strong mathematical tools and efficient numerical solvers.
+
+The project aimed to:
+
+- Understand simplified atmospheric models using ODE/PDE formulations  
+- Explore numerical schemes for convection-diffusion dynamics  
+- Compare the behavior of different solvers  
+- Analyze asymptotic behavior near the cyclone’s eye  
+- Build visualizations to interpret simulated wind fields and pressure gradients  
+
+---
+
+## 🧮 Mathematical Formulation
+
+Two types of equations were examined:
+
+### **1. Ordinary Differential Equations (ODEs)**
+ODEs were used to describe simplified trajectories and radial profiles of cyclone motion.
+
+Typical governing equations involve:
+- Radial velocity  
+- Pressure gradients  
+- Coriolis-like terms  
+- Simplified thermodynamic relationships  
+
+### **2. Partial Differential Equations (PDEs)**
+To represent more detailed dynamics (e.g., wind fields, vorticity), PDEs were considered.
+
+Examples include:
+- Convection–diffusion equations  
+- Shallow-water-like approximations  
+- Simplified Navier–Stokes-inspired models  
+
+---
+
+## 🧪 Numerical Methods
+
+To solve the ODEs and PDEs efficiently, I implemented several numerical techniques in Python.
+
+### 🔹 **Lax–Friedrichs Scheme**  
+Used for hyperbolic PDEs modeling convection.  
+This scheme provides stability and is easy to implement, ideal for early prototyping of cyclone dynamics.
+
+### 🔹 **Implicit Euler & θ-Method**  
+Robust for stiff ODEs and equations representing dissipative processes.
+
+### 🔹 **BDF (Backward Differentiation Formula)**  
+A high-accuracy solver suited for stiff dynamics, used to benchmark the simpler methods.
+
+### 🔹 **Cross-Method Validation**  
+I developed a dedicated Python script to validate numerical solvers against each other:  
+- Comparing trajectories  
+- Measuring numerical error  
+- Visualizing divergence between methods  
+- Tracking stability regions  
+
+---
+
+## 📊 Visualization & Analysis
+
+Visualization was a key part of the project.  
+Using **Matplotlib**, **NumPy**, and custom utility functions, I generated:
+
+- Cyclone radial profiles  
+- 2D wind field reconstructions  
+- Heatmaps for pressure distributions  
+- Time-evolution plots of key variables  
+- Error evolution across solvers  
+
+These visualizations helped identify stability issues, understand asymptotic behavior, and interpret physical meaning in the simulations.
+
+---
+
+## 🔬 Asymptotic Analysis
+
+A significant part of the project involved studying the **near-eye region**, where certain model parameters approach singular behavior.
+
+This required analyzing:
+
+- What happens as the function \( a(\xi) \to 0 \)  
+- How the radial solution behaves in this limit  
+- Numerical artifacts vs. true physical behavior  
+- Conditions under which the models remain stable  
+
+This provided insights into the limitations of simplified cyclone models and how to refine them.
+
+---
+
+## 🧭 Results & Learnings
+
+Through iterative simulations and solver comparisons, the project demonstrated:
+
+- The importance of choosing appropriate numerical methods for stiff equations  
+- How discretization impacts the physical validity of solutions  
+- Strengths and weaknesses of Lax–Friedrichs vs. implicit schemes  
+- How asymptotic limits reveal deeper structure in cyclone models  
+
+This work served as a strong foundation for further research in atmospheric modeling, numerical methods, and scientific computation.
+
+---
+
+## 🏁 Conclusion
+
+Cyclone modeling through ODEs and PDEs provides a rich intersection of mathematics, physics, and numerical analysis.  
+This project helped me develop:
+
+- A solid understanding of numerical simulation  
+- Experience with ODE/PDE solvers  
+- A robust workflow for testing and validating numerical methods  
+- Visualization techniques for scientific data  
+- Analytical skills for interpreting asymptotic behavior  
+
+Future work may include extending the model to more realistic conditions, incorporating turbulence, or simulating cyclone interaction with external systems.
+

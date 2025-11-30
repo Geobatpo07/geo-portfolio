@@ -9,14 +9,20 @@ import { motion } from "framer-motion"
 const certifications = [
     "Google Data Analytics Professional Certificate",
     "Google Business Intelligence Professional Certificate",
-    "Microsoft Certified: Fabric Analytics Engineer Associate"
+    "Microsoft Certified: Fabric Analytics Engineer Associate",
+    "Microsoft Certified: Fabric Data Engineer Associate",
+    "Apache Spark SQL for Data Analysts",
+    "Microsoft SQL Server Database Design Masterclass"
 ]
 
 const goals = [
-    "Mastering MLOps practices for productionizing ML models",
-    "Deepening knowledge in Big Data technologies like Spark and Fabric",
-    "Building advanced Recommender Systems",
-    "Contributing to open-source data projects"
+    "Expanding mastery of Data Science and advanced Machine Learning",
+    "Mastering MLOps for productionizing, deploying, and monitoring ML models",
+    "Deepening expertise in Big Data: Spark, PySpark, KQL, Lakehouse & Fabric",
+    "Building scalable ML-driven systems like Recommender Engines & SmartDedup",
+    "Developing high-performance pipelines with DuckDB, Polars, and Arrow",
+    "Advancing research in mathematical modeling & scientific computing (ODE/PDE)",
+    "Mentoring and teaching future data professionals through academic engagement"
 ]
 
 export default function AboutPage() {
@@ -31,19 +37,25 @@ export default function AboutPage() {
                     <Sparkles className="mr-2 h-4 w-4 text-primary" />
                     <span className="text-primary">About Me</span>
                 </div>
+
                 <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
                     Building the Future with <span className="gradient-text">Data</span>
                 </h1>
+
                 <p className="text-xl text-muted-foreground max-w-3xl">
-                    Data Scientist & Engineer with a passion for building scalable systems that transform raw data into actionable insights.
+                    Data Science & Analytics Engineer with strong mathematical foundations and hands-on experience in data pipelines, analytics, machine learning, and scientific computing.
+                    I’m passionate about bridging rigorous mathematics with real-world data systems that support strategic decision-making.
                 </p>
             </motion.div>
 
             <Separator className="my-12" />
 
             <div className="grid gap-12 lg:grid-cols-2">
-                {/* Left Column */}
+                
+                {/* LEFT COLUMN */}
                 <div className="space-y-8">
+
+                    {/* BACKGROUND */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -58,18 +70,28 @@ export default function AboutPage() {
                                     <CardTitle>Background</CardTitle>
                                 </div>
                             </CardHeader>
+
                             <CardContent className="text-muted-foreground leading-relaxed space-y-4">
                                 <p>
-                                    I am a dedicated Data Scientist and Engineer with a strong foundation in Mathematics and Computer Science.
-                                    My journey began with a Bachelor&apos;s in Applied & Fundamental Mathematics, which gave me the analytical tools to understand complex systems.
+                                    My journey began with a deep passion for mathematics, which evolved into applied modeling, scientific computing, and later into data science and engineering.
+                                    This unique blend enables me to approach data problems with analytical rigor and engineering precision.
                                 </p>
+
                                 <p>
-                                    I have since transitioned into the world of Data Engineering and Machine Learning, where I apply these concepts to build robust data pipelines and intelligent applications that solve real-world problems.
+                                    Today, I am a <strong>Data Analyst at Solutions S.A.</strong>, where I design and maintain ETL pipelines, build real-time dashboards, develop analytics applications in Java, Python, and .NET, 
+                                    and support the development of <strong>RADAR</strong>, the company’s BI & reporting platform.
+                                    I work daily with SQL Server, Microsoft Fabric, and Power BI to deliver insights that support strategic and operational decision-making.
+                                </p>
+
+                                <p>
+                                    Alongside my industry work, I am also a <strong>Lecturer in Mathematics</strong> at Université Quisqueya (UniQ), and a <strong>Teaching Assistant in Data Science & AI</strong>,
+                                    where I mentor students on Python, SQL, statistics, machine learning, and visualization.
                                 </p>
                             </CardContent>
                         </Card>
                     </motion.div>
 
+                    {/* GOALS */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -85,6 +107,7 @@ export default function AboutPage() {
                                     <CardTitle>Current Goals</CardTitle>
                                 </div>
                             </CardHeader>
+
                             <CardContent>
                                 <ul className="space-y-3">
                                     {goals.map((goal, index) => (
@@ -106,8 +129,10 @@ export default function AboutPage() {
                     </motion.div>
                 </div>
 
-                {/* Right Column */}
+                {/* RIGHT COLUMN */}
                 <div className="space-y-8">
+
+                    {/* EDUCATION */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -122,17 +147,52 @@ export default function AboutPage() {
                                     <CardTitle>Education</CardTitle>
                                 </div>
                             </CardHeader>
+
                             <CardContent>
                                 <div className="space-y-4">
+
                                     <div className="p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
-                                        <h3 className="font-semibold text-lg">Bachelor in Applied & Fundamental Mathematics</h3>
-                                        <p className="text-sm text-muted-foreground mt-1">University Name • Year</p>
+                                        <h3 className="font-semibold text-lg">
+                                            Master of Science – Mathematics & Applications  
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground mt-1">
+                                            Université des Antilles • Modeling & Decision-Making Tools Track (2024–2026)
+                                        </p>
                                     </div>
+
+                                    <div className="p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                                        <h3 className="font-semibold text-lg">
+                                            Bachelor of Science – Mathematics
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground mt-1">
+                                            École Normale Supérieure, UEH (2021–2022)
+                                        </p>
+                                    </div>
+
+                                    <div className="p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                                        <h3 className="font-semibold text-lg">
+                                            Engineer’s Degree – Civil Engineering
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground mt-1">
+                                            Faculté des Sciences, UEH (2017–2022)
+                                        </p>
+                                    </div>
+
+                                    <div className="p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                                        <h3 className="font-semibold text-lg">
+                                            MicroMasters – MITx Statistics & Data Science (Methods Track)
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground mt-1">
+                                            MITx Online (2024)
+                                        </p>
+                                    </div>
+
                                 </div>
                             </CardContent>
                         </Card>
                     </motion.div>
 
+                    {/* CERTIFICATIONS */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -148,6 +208,7 @@ export default function AboutPage() {
                                     <CardTitle>Certifications</CardTitle>
                                 </div>
                             </CardHeader>
+
                             <CardContent>
                                 <div className="space-y-3">
                                     {certifications.map((cert, index) => (
@@ -161,14 +222,24 @@ export default function AboutPage() {
                                         >
                                             <div className="flex items-start gap-3">
                                                 <div className="mt-1">
-                                                    <Badge variant="secondary" className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                                                    <Badge
+                                                        variant="secondary"
+                                                        className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                                                    >
                                                         ✓
                                                     </Badge>
                                                 </div>
+
                                                 <div>
-                                                    <h3 className="font-medium group-hover:text-primary transition-colors">{cert}</h3>
+                                                    <h3 className="font-medium group-hover:text-primary transition-colors">
+                                                        {cert}
+                                                    </h3>
                                                     <p className="text-sm text-muted-foreground mt-1">
-                                                        {cert.includes("Google") ? "Google" : "Microsoft"}
+                                                        {cert.includes("Google")
+                                                            ? "Google"
+                                                            : cert.includes("Microsoft")
+                                                            ? "Microsoft"
+                                                            : "Certification"}
                                                     </p>
                                                 </div>
                                             </div>
@@ -178,6 +249,7 @@ export default function AboutPage() {
                             </CardContent>
                         </Card>
                     </motion.div>
+
                 </div>
             </div>
         </div>

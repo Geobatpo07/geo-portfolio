@@ -4,31 +4,56 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Card } from "@/components/ui/card"
-import { Database, Code, BarChart, Server, Layout, Brain } from "lucide-react"
+import {
+    Database,
+    Code,
+    BarChart,
+    Server,
+    Layout,
+    Brain,
+    Cog,
+    Boxes,
+    Terminal,
+    Rocket,
+    Layers,
+    Cloud,
+    Wrench
+} from "lucide-react"
 
 const skills = {
     languages: [
         { name: "Python", icon: Code, level: "Expert" },
         { name: "SQL", icon: Database, level: "Expert" },
         { name: "TypeScript", icon: Layout, level: "Advanced" },
+        { name: "Java", icon: Code, level: "Intermediate" },
         { name: "R", icon: BarChart, level: "Intermediate" },
     ],
     data: [
         { name: "DuckDB", icon: Database, level: "Advanced" },
         { name: "Polars", icon: BarChart, level: "Advanced" },
         { name: "SQL Server", icon: Server, level: "Expert" },
-        { name: "Fabric", icon: Database, level: "Intermediate" },
+        { name: "Microsoft Fabric", icon: Cloud, level: "Intermediate" },
         { name: "Power BI", icon: BarChart, level: "Expert" },
+        { name: "PySpark", icon: Terminal, level: "Intermediate" },
+        { name: "KQL", icon: Terminal, level: "Advanced" },
+        { name: "dbt (DataHut-DuckHouse)", icon: Boxes, level: "Intermediate" },
     ],
     ml: [
         { name: "PyTorch", icon: Brain, level: "Intermediate" },
         { name: "Scikit-learn", icon: Brain, level: "Advanced" },
         { name: "TensorFlow", icon: Brain, level: "Intermediate" },
+        { name: "Dedupe.io", icon: Brain, level: "Advanced" },
+        { name: "MLflow (MLOps)", icon: Cog, level: "Intermediate" },
+        { name: "Deep Learning", icon: Brain, level: "Intermediate" },
     ],
     web: [
         { name: "Next.js", icon: Layout, level: "Advanced" },
         { name: "React", icon: Layout, level: "Advanced" },
-        { name: "Tailwind", icon: Layout, level: "Expert" },
+        { name: "Tailwind CSS", icon: Layout, level: "Expert" },
+        { name: "FastAPI", icon: Rocket, level: "Advanced" },
+        { name: "Spring Boot", icon: Server, level: "Intermediate" },
+        { name: "Docker", icon: Layers, level: "Intermediate" },
+        { name: "Git", icon: Wrench, level: "Advanced" },
     ]
 }
 
@@ -41,13 +66,19 @@ export function SkillsSection() {
         <section className="py-20 bg-muted/30">
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center text-center space-y-4 mb-12">
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Technical Arsenal</h2>
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                        Technical Arsenal
+                    </h2>
                     <p className="text-muted-foreground max-w-[700px]">
-                        My toolkit for building scalable data solutions and modern web applications.
+                        My toolkit for building scalable data systems, intelligent applications, and modern web platforms.
                     </p>
                 </div>
 
-                <Tabs defaultValue="all" className="w-full max-w-4xl mx-auto" onValueChange={setActiveTab}>
+                <Tabs
+                    defaultValue="all"
+                    className="w-full max-w-4xl mx-auto"
+                    onValueChange={setActiveTab}
+                >
                     <TabsList className="grid w-full grid-cols-5 mb-8">
                         <TabsTrigger value="all">All</TabsTrigger>
                         <TabsTrigger value="languages">Languages</TabsTrigger>
@@ -58,7 +89,10 @@ export function SkillsSection() {
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         <AnimatePresence mode="popLayout">
-                            {(activeTab === "all" ? allSkills : skills[activeTab as keyof typeof skills] || []).map((skill) => (
+                            {(activeTab === "all"
+                                ? allSkills
+                                : skills[activeTab as keyof typeof skills] || []
+                            ).map((skill) => (
                                 <motion.div
                                     key={skill.name}
                                     layout

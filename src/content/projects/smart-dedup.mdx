@@ -1,10 +1,183 @@
 ---
 title: SmartDedup
-description: Intelligent data deduplication system using machine learning techniques to identify duplicate records.
+description: Intelligent data deduplication system using machine learning techniques to identify duplicate patient records in a large-scale medical information system.
 date: '2023-01-01'
-tags: ['Machine Learning', 'Data Engineering', 'Python']
+tags: ['Machine Learning', 'Data Engineering', 'Python', 'FastAPI', 'DuckDB']
 ---
 
 # SmartDedup
 
-Content coming soon...
+SmartDedup is a machine learning–powered system designed to identify and merge duplicate patient records across distributed SQL Server databases.  
+It was developed to address a critical challenge in medical information systems: **ensuring reliable patient identity** in environments where data is entered manually, inconsistently, and often with missing or ambiguous fields.
+
+This project combines **ML modeling**, **data engineering**, **API design**, and **performance optimization** using modern tools such as **dedupe**, **DuckDB**, **Polars**, and **FastAPI**, while integrating directly with existing systems like **SALVH** and **PLR**.
+
+---
+
+## 🔍 Problem Overview
+
+Healthcare systems in Haiti often manage large databases of patient notifications where:
+- Names may be spelled differently  
+- Mothers' names vary  
+- Dates of birth may be partially missing  
+- MPI/unique identifiers can be inconsistent  
+
+Duplicate records lead to:
+- Incorrect patient history  
+- Incomplete treatment monitoring  
+- Inflated statistics  
+- Operational inefficiencies  
+
+SmartDedup solves this by building an **intelligent matching engine** trained to detect duplicate entries with high precision.
+
+---
+
+## 🧠 How SmartDedup Works
+
+SmartDedup uses a combination of:
+
+### ✔ Machine Learning  
+The core model relies on the **dedupe** library, which uses:
+- Active learning  
+- String similarity  
+- Numeric distance  
+- Supervised labeling  
+- Field-level feature extraction  
+
+Your training file (`training.json`) captures expert decisions and helps refine the model iteratively.
+
+### ✔ Data Engineering  
+You use:
+- **DuckDB** for fast SQL joins and in-memory analytics  
+- **Polars** for efficient columnar data processing  
+- **SQL Server** as the source of patient records  
+- **Power Query / Dataflows** when integrating with Power BI
+
+This enables processing **thousands of records efficiently**.
+
+---
+
+## 🏗 System Architecture
+
+Here is the architecture overview:
+
+SQL Server (SALVH)
+↓
+DuckDB + Polars preprocessing
+↓
+SmartDedup ML model (dedupe)
+↓
+FastAPI backend
+↓
+REST API → SALVH / PLR / Partner systems
+↓
+Web Interface (Dashboard, Training, Review)
+
+---
+
+
+### Key components:
+
+#### **1. Data Preprocessing Layer**
+Implemented using:
+- DuckDB for optimized SQL execution  
+- Polars for transformations  
+- Cleaning and normalization of:
+  - Names  
+  - Birthdates  
+  - Mothers’ names  
+  - Gender  
+  - Facility codes  
+
+#### **2. Machine Learning Layer**
+- Uses dedupe’s field-based similarity algorithms  
+- Training file stored in `/data/training.json`  
+- Settings file saved in `/data/dedupe_settings`  
+- Custom training labels are continuously reused and improved  
+- Ability to expand the model with additional features (phonetic matching, embeddings, etc.)
+
+#### **3. API Layer (FastAPI)**
+A REST backend exposes:
+- Deduplication results  
+- Matched/unmatched records  
+- Confidence scores  
+- Batch processing endpoints  
+- Logging endpoints  
+
+Partners like SALVH and PLR can consume these results directly.
+
+#### **4. Web Interface**
+The planned interface includes dashboards for:
+- Viewing raw and deduplicated datasets  
+- Reviewing matches  
+- Training the model manually  
+- Visualizing clusters  
+- Monitoring accuracy  
+
+---
+
+## ⚙️ Multi-Server Synchronization
+
+SmartDedup also supports synchronizing scripts and dedup logic across multiple MySQL servers.  
+This includes:
+
+- A **centralized API** that distributes script updates  
+- Logging of script execution (`DEBUT IMPORTATION`, `FIN IMPORTATION`)  
+- Tracking success/failure  
+- Ensuring each site stays up to date with the newest dedupe pipeline
+
+This guarantees consistency across all deployments.
+
+---
+
+## 📝 Features
+
+### 🔹 **Accurate Duplicate Detection**
+Using ML-algorithms instead of naive string comparison.
+
+### 🔹 **Continuous Learning**
+The model improves as new labeled examples are added.
+
+### 🔹 **High Performance**
+DuckDB + Polars drastically reduces processing time.
+
+### 🔹 **API-Driven Architecture**
+Provides easy integration with existing medical platforms.
+
+### 🔹 **Dashboard & Visualization**
+Helps analysts review and validate results.
+
+### 🔹 **Production-Ready Workflow**
+Logging, monitoring, incremental updates, and environment separation.
+
+---
+
+## 🧪 Results & Impact
+
+SmartDedup significantly improves:
+- Data quality  
+- Patient tracking accuracy  
+- System reliability  
+- Interoperability between health systems  
+
+It reduces manual cleaning time and ensures that care delivery is linked to **the right patient**.
+
+---
+
+## 🏁 Conclusion
+
+SmartDedup is more than a simple deduplication tool — it is a **full data quality and machine learning pipeline**, designed for real-world healthcare environments.
+
+It demonstrates:
+- Advanced ML engineering  
+- Strong data pipeline design  
+- Ability to integrate with mission-critical systems  
+- Practical use of modern tech stacks (DuckDB, Polars, FastAPI)  
+- Real technical leadership on production data problems  
+
+Future improvements include:
+- Deep learning–based similarity embeddings  
+- Interactive cluster visualization  
+- Automated retraining pipelines  
+- A full multi-tenant architecture using DataHut-DuckHouse style patterns  
+

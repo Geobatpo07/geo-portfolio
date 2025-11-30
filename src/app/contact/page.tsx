@@ -9,21 +9,21 @@ import { motion } from "framer-motion"
 const socialLinks = [
     {
         name: "Email",
-        href: "mailto:email@example.com",
+        href: "mailto:lgeobatpo98@gmail.com",
         icon: Mail,
-        label: "email@example.com",
+        label: "lgeobatpo98@gmail.com",
         color: "hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/50"
     },
     {
         name: "LinkedIn",
-        href: "https://linkedin.com",
+        href: "https://linkedin.com/in/geobatpo07",
         icon: Linkedin,
         label: "Connect on LinkedIn",
         color: "hover:bg-blue-500/10 hover:text-blue-500 hover:border-blue-500/50"
     },
     {
         name: "GitHub",
-        href: "https://github.com",
+        href: "https://github.com/geobatpo07",
         icon: Github,
         label: "Follow on GitHub",
         color: "hover:bg-purple-500/10 hover:text-purple-500 hover:border-purple-500/50"
