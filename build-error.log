@@ -1,0 +1,48 @@
+
+> geo-portfolio@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Ôû▓ Next.js 16.0.5 (Turbopack)
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ Ô£ô Compiled successfully in 7.1s
+   Running TypeScript ...
+   Collecting page data using 7 workers ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 7 workers (0/15) ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 7 workers (3/15) 
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+Error occurred prerendering page "/blog/microsoft-fabric-review". Read more: https://nextjs.org/docs/messages/prerender-error
+YAMLException: incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line at line 2, column 24:
+    title: Microsoft Fabric: A Game Changer?
+                           ^
+    at K (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:156353)
+    at L (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:156451)
+    at _ (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:164549)
+    at ad (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:167880)
+    at ae (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:169989)
+    at af (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:170732)
+    at ah (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:170941)
+    at Object.aj [as safeLoad] (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:171202)
+    at b.exports (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:184002)
+    at n (C:\Users\lgeov\Documents\Data Analytics Projects\geo-portfolio\.next\server\chunks\ssr\[root-of-the-server]__c1e4fbff._.js:1:184825) {
+  reason: 'incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line',
+  mark: [e],
+  digest: '3950172328',
+  constructor: [Function: d],
+  toString: [Function (anonymous)]
+}
+Export encountered an error on /blog/[slug]/page: /blog/microsoft-fabric-review, exiting the build.
+ Ô¿» Next.js build worker exited with code: 1 and signal: null

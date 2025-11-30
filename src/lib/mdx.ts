@@ -4,6 +4,12 @@ import matter from "gray-matter"
 
 const root = process.cwd()
 
+export interface Post {
+    slug: string
+    frontMatter: Record<string, any>
+    content: string
+}
+
 export async function getFiles(type: string) {
     const dir = path.join(root, "src", "content", type)
     if (!fs.existsSync(dir)) return []

@@ -1,0 +1,24 @@
+
+> geo-portfolio@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Ôû▓ Next.js 16.0.5 (Turbopack)
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ Ô£ô Compiled successfully in 5.8s
+   Running TypeScript ...
+Failed to compile.
+
+./src/components/ui/progress.tsx:5:20
+Type error: Cannot find module '@/components/ui/utils' or its corresponding type declarations.
+
+  3 | import * as React from "react"
+  4 | import * as ProgressPrimitive from "@radix-ui/react-progress"
+> 5 | import { cn } from "@/components/ui/utils"
+    |                    ^
+  6 |
+  7 | const Progress = React.forwardRef<
+  8 |     React.ElementRef<typeof ProgressPrimitive.Root>,
+Next.js build worker exited with code: 1 and signal: null

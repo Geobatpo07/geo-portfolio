@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useCallback } from "react"
 import { BlogHero } from "@/components/blog/BlogHero"
 import { SearchFilter } from "@/components/blog/SearchFilter"
 import { BlogCard } from "@/components/blog/BlogCard"
 import { blogPosts } from "@/lib/data"
 import { getAllTags } from "@/lib/blog"
 import { motion, AnimatePresence } from "framer-motion"
+import { useRouter } from "next/navigation"
+import { use } from "react"
 
 // Convert data to Post type structure for compatibility
 const posts = blogPosts.map(post => ({
@@ -15,39 +16,36 @@ const posts = blogPosts.map(post => ({
         title: post.title,
         date: post.date,
         description: post.description,
-        tags: post.tags || ["Data Science", "Engineering"],
+        tags: post.tags,
     },
     content: ""
 }))
 
-export default function BlogPage() {
-    const [filteredPosts, setFilteredPosts] = useState(posts)
-    const [selectedTag, setSelectedTag] = useState<string | null>(null)
+export default function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+    const { tag } = use(params)
+    const router = useRouter()
+    const decodedTag = decodeURIComponent(tag)
 
     const allTags = getAllTags(posts)
 
-    const handleSearch = useCallback((query: string) => {
-        const lowerQuery = query.toLowerCase()
-        const filtered = posts.filter(post => {
-            const matchesSearch =
-                post.frontMatter.title.toLowerCase().includes(lowerQuery) ||
-                post.frontMatter.description.toLowerCase().includes(lowerQuery)
+    const filteredPosts = posts.filter(post =>
+        post.frontMatter.tags?.includes(decodedTag)
+    )
 
-            const matchesTag = selectedTag ? post.frontMatter.tags?.includes(selectedTag) : true
+    const handleSearch = (query: string) => {
+        // Redirect to main blog page for search since this is a specific tag view
+        if (query) {
+            router.push(`/blog?search=${query}`)
+        }
+    }
 
-            return matchesSearch && matchesTag
-        })
-        setFilteredPosts(filtered)
-    }, [selectedTag])
-
-    const handleTagSelect = useCallback((tag: string | null) => {
-        setSelectedTag(tag)
-        const filtered = posts.filter(post => {
-            const matchesTag = tag ? post.frontMatter.tags?.includes(tag) : true
-            return matchesTag
-        })
-        setFilteredPosts(filtered)
-    }, [])
+    const handleTagSelect = (selectedTag: string | null) => {
+        if (selectedTag) {
+            router.push(`/blog/tag/${selectedTag}`)
+        } else {
+            router.push('/blog')
+        }
+    }
 
     return (
         <div className="min-h-screen pb-20">
@@ -55,11 +53,16 @@ export default function BlogPage() {
 
             <div className="container relative z-10 -mt-20">
                 <div className="bg-background/80 backdrop-blur-xl rounded-3xl border shadow-2xl p-8 md:p-12">
+                    <div className="mb-8">
+                        <h2 className="text-2xl font-bold mb-2">Posts tagged with <span className="text-primary">#{decodedTag}</span></h2>
+                        <p className="text-muted-foreground">Found {filteredPosts.length} articles</p>
+                    </div>
+
                     <SearchFilter
                         tags={allTags}
                         onSearch={handleSearch}
                         onTagSelect={handleTagSelect}
-                        selectedTag={selectedTag}
+                        selectedTag={decodedTag}
                     />
 
                     <motion.div
@@ -84,7 +87,7 @@ export default function BlogPage() {
 
                     {filteredPosts.length === 0 && (
                         <div className="text-center py-20 text-muted-foreground">
-                            No posts found matching your criteria.
+                            No posts found with this tag.
                         </div>
                     )}
                 </div>

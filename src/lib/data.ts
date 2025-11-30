@@ -40,11 +40,20 @@ export const blogPosts = [
         description: "An introduction to Machine Learning Operations and why it matters.",
         date: "2023-10-01",
         slug: "getting-started-mlops",
+        tags: ["MLOps", "Machine Learning", "DevOps"],
     },
     {
         title: "Microsoft Fabric: A Game Changer?",
         description: "Exploring the new data analytics platform from Microsoft.",
         date: "2023-11-15",
         slug: "microsoft-fabric-review",
+        tags: ["Microsoft Fabric", "Data Engineering", "Azure"],
+    },
+    {
+        title: "Advanced MDX Features",
+        description: "A demonstration of the advanced MDX features available in this blog system.",
+        date: "2023-12-01",
+        slug: "advanced-mdx-features",
+        tags: ["Next.js", "MDX", "React", "Visualization"],
     }
 ]

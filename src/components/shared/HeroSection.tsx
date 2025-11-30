@@ -32,9 +32,9 @@ export function HeroSection() {
 
                 <h1 className="text-4xl font-extrabold leading-tight tracking-tighter md:text-6xl lg:text-7xl">
                     Hi, I&apos;m{" "}
-                    <span className="gradient-text">Geo</span>
+                    <span className="gradient-text">Geovany</span>
                     <br className="hidden sm:inline" />
-                    Data Scientist & Engineer.
+                    Data Science & Analytics Engineer.
                 </h1>
 
                 <p className="max-w-[700px] text-lg text-muted-foreground md:text-xl">

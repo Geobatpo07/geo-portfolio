@@ -1,0 +1,74 @@
+---
+title: "Advanced MDX Features"
+date: "2023-12-01"
+description: "A demonstration of the advanced MDX features available in this blog system, including custom blocks, interactive charts, and ML demos."
+tags: ["Next.js", "MDX", "React", "Visualization"]
+---
+
+Welcome to the **Advanced Blog System**! This post demonstrates the powerful features available for writing technical content.
+
+## Typography & Formatting
+
+We use a beautiful, legible font stack optimized for reading. You can use **bold**, *italic*, `inline code`, and [links](#).
+
+> "The goal of this blog system is to provide a premium reading experience for technical content."
+
+## Custom Callout Blocks
+
+We have custom callout blocks for different types of content:
+
+<Callout type="tip" title="Pro Tip">
+  Use callouts to highlight important information that shouldn't be missed.
+</Callout>
+
+<Callout type="warning" title="Warning">
+  Be careful when deploying to production without testing!
+</Callout>
+
+<Callout type="info" title="Did you know?">
+  Next.js 14 App Router uses React Server Components by default.
+</Callout>
+
+## Interactive Visualizations
+
+You can embed interactive charts directly in your markdown:
+
+<InteractiveChart 
+  title="Model Training Loss"
+  data={[
+    { name: 'Epoch 1', loss: 0.8 },
+    { name: 'Epoch 2', loss: 0.6 },
+    { name: 'Epoch 3', loss: 0.4 },
+    { name: 'Epoch 4', loss: 0.3 },
+    { name: 'Epoch 5', loss: 0.25 },
+  ]}
+  dataKey="loss"
+  color="#ef4444"
+/>
+
+## Code Blocks
+
+We support syntax highlighting with line numbers and copy functionality:
+
+```python showLineNumbers
+def train_model(data, epochs=10):
+    model = create_model()
+    history = []
+    
+    for epoch in range(epochs):
+        loss = model.fit(data)
+        history.append(loss)
+        print(f"Epoch {epoch+1}: Loss = {loss:.4f}")
+        
+    return model, history
+```
+
+## ML Demos
+
+You can even embed interactive ML demos:
+
+<MLDemo />
+
+## Conclusion
+
+This system allows you to write rich, interactive technical content with ease. Enjoy writing!
