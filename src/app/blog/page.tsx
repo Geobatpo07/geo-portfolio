@@ -1,94 +1,71 @@
-"use client"
+import Link from "next/link"
+import Image from "next/image"
+import { createClient } from "@/utils/supabase/server"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Calendar } from "lucide-react"
 
-import { useState, useCallback } from "react"
-import { BlogHero } from "@/components/blog/BlogHero"
-import { SearchFilter } from "@/components/blog/SearchFilter"
-import { BlogCard } from "@/components/blog/BlogCard"
-import { blogPosts } from "@/lib/data"
-import { getAllTags } from "@/lib/blog"
-import { motion, AnimatePresence } from "framer-motion"
+export const revalidate = 60 // Revalidate every minute
 
-// Convert data to Post type structure for compatibility
-const posts = blogPosts.map(post => ({
-    slug: post.slug,
-    frontMatter: {
-        title: post.title,
-        date: post.date,
-        description: post.description,
-        tags: post.tags || ["Data Science", "Engineering"],
-    },
-    content: ""
-}))
+export default async function BlogPage() {
+    const supabase = await createClient()
 
-export default function BlogPage() {
-    const [filteredPosts, setFilteredPosts] = useState(posts)
-    const [selectedTag, setSelectedTag] = useState<string | null>(null)
-
-    const allTags = getAllTags(posts)
-
-    const handleSearch = useCallback((query: string) => {
-        const lowerQuery = query.toLowerCase()
-        const filtered = posts.filter(post => {
-            const matchesSearch =
-                post.frontMatter.title.toLowerCase().includes(lowerQuery) ||
-                post.frontMatter.description.toLowerCase().includes(lowerQuery)
-
-            const matchesTag = selectedTag ? post.frontMatter.tags?.includes(selectedTag) : true
-
-            return matchesSearch && matchesTag
-        })
-        setFilteredPosts(filtered)
-    }, [selectedTag])
-
-    const handleTagSelect = useCallback((tag: string | null) => {
-        setSelectedTag(tag)
-        const filtered = posts.filter(post => {
-            const matchesTag = tag ? post.frontMatter.tags?.includes(tag) : true
-            return matchesTag
-        })
-        setFilteredPosts(filtered)
-    }, [])
+    const { data: posts } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("status", "published")
+        .order("created_at", { ascending: false })
 
     return (
-        <div className="min-h-screen pb-20">
-            <BlogHero />
-
-            <div className="container relative z-10 -mt-20">
-                <div className="bg-background/80 backdrop-blur-xl rounded-3xl border shadow-2xl p-8 md:p-12">
-                    <SearchFilter
-                        tags={allTags}
-                        onSearch={handleSearch}
-                        onTagSelect={handleTagSelect}
-                        selectedTag={selectedTag}
-                    />
-
-                    <motion.div
-                        layout
-                        className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                        <AnimatePresence>
-                            {filteredPosts.map((post) => (
-                                <motion.div
-                                    key={post.slug}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <BlogCard post={post} />
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-                    </motion.div>
-
-                    {filteredPosts.length === 0 && (
-                        <div className="text-center py-20 text-muted-foreground">
-                            No posts found matching your criteria.
-                        </div>
-                    )}
-                </div>
+        <div className="container mx-auto py-12 px-4 space-y-12">
+            <div className="text-center space-y-4">
+                <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Blog</h1>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Thoughts, tutorials, and insights on data analytics, engineering, and web development.
+                </p>
             </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {posts?.map((post) => (
+                    <Link key={post.id} href={`/blog/${post.slug}`} className="group">
+                        <Card className="h-full overflow-hidden border-2 hover:border-primary/50 transition-all duration-300">
+                            {post.cover_image && (
+                                <div className="relative h-48 w-full overflow-hidden">
+                                    <Image
+                                        src={post.cover_image}
+                                        alt={post.title}
+                                        fill
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    />
+                                </div>
+                            )}
+                            <CardHeader>
+                                <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                                    {post.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground line-clamp-3 text-sm">
+                                    {post.description}
+                                </p>
+                            </CardContent>
+                            <CardFooter className="flex items-center justify-between text-xs text-muted-foreground mt-auto">
+                                <div className="flex items-center gap-1">
+                                    <Calendar className="h-3 w-3" />
+                                    {new Date(post.created_at).toLocaleDateString()}
+                                </div>
+                                {/* Add reading time calculation if available */}
+                            </CardFooter>
+                        </Card>
+                    </Link>
+                ))}
+            </div>
+
+            {posts?.length === 0 && (
+                <div className="text-center py-20">
+                    <p className="text-muted-foreground">No posts published yet. Check back soon!</p>
+                </div>
+            )}
         </div>
     )
 }
