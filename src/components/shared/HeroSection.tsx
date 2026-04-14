@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ExternalLink, GraduationCap, Download, Sparkles } from "lucide-react"
+import { ArrowRight, ExternalLink, GraduationCap, Sparkles } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function HeroSection() {
@@ -85,8 +85,10 @@ export function HeroSection() {
                         Academic Site <GraduationCap className="ml-2 h-5 w-5" />
                     </a>
                 </Button>
-                <Button variant="ghost" size="lg" className="h-12 px-8 rounded-full hover:bg-white/5 transition-all duration-300">
-                    Download CV <Download className="ml-2 h-5 w-5" />
+                <Button variant="ghost" size="lg" asChild className="h-12 px-8 rounded-full hover:bg-white/5 transition-all duration-300">
+                    <a href="https://geovanylaguerre.net/cv/" target="_blank" rel="noreferrer">
+                        View CV <ExternalLink className="ml-2 h-5 w-5" />
+                    </a>
                 </Button>
             </motion.div>
 

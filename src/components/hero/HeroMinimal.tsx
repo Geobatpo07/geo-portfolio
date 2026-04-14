@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import { ArrowRight, Download } from "lucide-react"
+import { ArrowRight, ExternalLink } from "lucide-react"
 import Link from "next/link"
 
 export function HeroMinimal() {
@@ -36,10 +36,10 @@ export function HeroMinimal() {
                                 View Projects <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
-                        <Button variant="outline" size="lg" className="h-12 px-8 text-base">
-                            <Link href="/resume.pdf" target="_blank">
-                                Download Resume <Download className="ml-2 h-4 w-4" />
-                            </Link>
+                        <Button variant="outline" size="lg" asChild className="h-12 px-8 text-base">
+                            <a href="https://geovanylaguerre.net/cv/" target="_blank" rel="noreferrer">
+                                View CV <ExternalLink className="ml-2 h-4 w-4" />
+                            </a>
                         </Button>
                     </motion.div>
                 </div>

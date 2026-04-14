@@ -85,8 +85,8 @@ export const sidebarConfig: SidebarGroup[] = [
                 external: true,
             },
             {
-                name: "Download CV",
-                href: "/cv.pdf",
+                name: "View CV",
+                href: "https://geovanylaguerre.net/cv/",
                 icon: FileText,
                 external: true,
             },
