@@ -16,9 +16,81 @@ const geistMono = Roboto_Mono({
   subsets: ["latin"],
 });
 
+const baseUrl = "https://geovanylaguerre.net";
+
 export const metadata: Metadata = {
-  title: "Geo's Stories | Data Science & Engineering",
-  description: "Portfolio of a Data Scientist and Engineer specializing in MLOps, Big Data, and Analytics.",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Geovany Batista Polo LAGUERRE | Data Scientist, Engineer & Researcher",
+    template: "%s | Geo's Portfolio",
+  },
+  description:
+    "Data Scientist and Engineer specializing in MLOps, Big Data Analytics, Environmental Modeling, and Advanced Data Systems. Explore projects, research, and insights.",
+  keywords: [
+    "Data Science",
+    "Machine Learning",
+    "MLOps",
+    "Big Data",
+    "Data Engineering",
+    "Cloud Computing",
+    "Environmental Modeling",
+    "Data Analytics",
+    "Portfolio",
+    "Geovany Batista",
+  ],
+  authors: [{ name: "Geovany Batista Polo LAGUERRE" }],
+  creator: "Geovany Batista Polo LAGUERRE",
+  publisher: "Geovany Batista Polo LAGUERRE",
+  formatDetection: {
+    email: true,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: baseUrl,
+    siteName: "Geo's Portfolio",
+    title: "Geovany Batista Polo LAGUERRE | Data Scientist & Engineer",
+    description:
+      "Data Scientist and Engineer specializing in MLOps, Big Data Analytics, and Environmental Modeling",
+    images: [
+      {
+        url: `${baseUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "Geo's Portfolio",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@geobatpo07",
+    creator: "@geobatpo07",
+    title: "Geovany Batista Polo LAGUERRE | Data Scientist & Engineer",
+    description:
+      "Data Scientist and Engineer specializing in MLOps, Big Data Analytics, and Environmental Modeling",
+    images: [`${baseUrl}/og-image.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: baseUrl,
+    languages: {
+      en: `${baseUrl}/en`,
+      fr: `${baseUrl}/fr`,
+    },
+  },
 };
 
 export default function RootLayout({

@@ -9,6 +9,65 @@ import { AuthorProfile } from "@/components/blog/AuthorProfile"
 import { getReadingTime } from "@/lib/blog"
 import { useMDXComponents } from "@/mdx-components"
 import { notFound } from "next/navigation"
+import { Metadata } from "next"
+
+const baseUrl = "https://geovanylaguerre.net"
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params
+    let post: Awaited<ReturnType<typeof getFileBySlug>> | null = null
+
+    try {
+        post = await getFileBySlug("blog", slug)
+    } catch {
+        return {
+            title: "Blog Post | Geo's Portfolio",
+        }
+    }
+
+    if (!post) {
+        return {
+            title: "Blog Post | Geo's Portfolio",
+        }
+    }
+
+    const { frontMatter } = post
+    const title = `${frontMatter.title as string} | Geo's Portfolio`
+    const description = (frontMatter.description as string) || ""
+
+    return {
+        title,
+        description,
+        keywords: Array.isArray(frontMatter.tags) ? (frontMatter.tags as string[]) : [],
+        authors: [{ name: "Geovany Batista Polo LAGUERRE" }],
+        openGraph: {
+            title,
+            description,
+            url: `${baseUrl}/blog/${slug}`,
+            type: "article",
+            publishedTime: frontMatter.date as string,
+            authors: ["Geovany Batista Polo LAGUERRE"],
+            tags: Array.isArray(frontMatter.tags) ? (frontMatter.tags as string[]) : [],
+            images: [
+                {
+                    url: `${baseUrl}/og-image.png`,
+                    width: 1200,
+                    height: 630,
+                    alt: frontMatter.title as string,
+                },
+            ],
+        },
+        twitter: {
+            title,
+            description,
+            card: "summary_large_image",
+            images: [`${baseUrl}/og-image.png`],
+        },
+        alternates: {
+            canonical: `${baseUrl}/blog/${slug}`,
+        },
+    }
+}
 
 export async function generateStaticParams() {
     const posts = await getFiles("blog")

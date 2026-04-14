@@ -3,6 +3,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { notFound } from "next/navigation"
+import { Metadata } from "next"
+
+const baseUrl = "https://geovanylaguerre.net"
 
 // This is a simplified version — MDX support can be added later
 export default async function ProjectPost({ params }: { params: Promise<{ slug: string }> }) {
@@ -88,4 +91,27 @@ export async function generateStaticParams() {
         { slug: "cyclone-modeling" },
         { slug: "smart-dedup" }
     ]
+}
+
+// Get project data by slug for metadata
+function getProjectData(slug: string): { title: string; description: string } | null {
+    const projectMap: Record<string, { title: string; description: string }> = {
+        "recommender-system": {
+            title: "Recommender System using Goodbooks-10k",
+            description: "Collaborative filtering and deep learning recommender system using PyTorch, scikit-learn, and Pandas/Polars for the Goodbooks-10k dataset."
+        },
+        "powerbi-fabric": {
+            title: "Power BI Real-Time Analytics with Microsoft Fabric",
+            description: "Real-time analytics pipeline using Microsoft Fabric's Eventstreams, KQL databases, and Lakehouses for enterprise BI solutions."
+        },
+        "cyclone-modeling": {
+            title: "Cyclone Modeling using ODE/PDE Simulation",
+            description: "Research project on numerical simulation of cyclones using Ordinary and Partial Differential Equations with advanced numerical methods."
+        },
+        "smart-dedup": {
+            title: "SmartDedup — Intelligent Patient Record Deduplication",
+            description: "Production ML system for identifying duplicate patient medical records using active learning, DuckDB, Polars, and FastAPI."
+        }
+    }
+    return projectMap[slug] || null
 }
