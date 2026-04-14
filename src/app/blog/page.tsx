@@ -1,20 +1,23 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
-import { createClient } from "@/utils/supabase/server"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar } from "lucide-react"
+import { useQuery } from "convex/react"
+import { api } from "../../../convex/_generated/api"
 
-export const revalidate = 60 // Revalidate every minute
+export default function BlogPage() {
+    const posts = useQuery(api.blog.getPublishedPosts)
 
-export default async function BlogPage() {
-    const supabase = await createClient()
-
-    const { data: posts } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("status", "published")
-        .order("created_at", { ascending: false })
+    if (!posts) {
+        return (
+            <div className="container mx-auto py-12 px-4">
+                <div className="text-center">Loading...</div>
+            </div>
+        )
+    }
 
     return (
         <div className="container mx-auto py-12 px-4 space-y-12">
@@ -27,7 +30,7 @@ export default async function BlogPage() {
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {posts?.map((post) => (
-                    <Link key={post.id} href={`/blog/${post.slug}`} className="group">
+                    <Link key={post._id} href={`/blog/${post.slug}`} className="group">
                         <Card className="h-full overflow-hidden border-2 hover:border-primary/50 transition-all duration-300">
                             {post.cover_image && (
                                 <div className="relative h-48 w-full overflow-hidden">

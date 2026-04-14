@@ -1,4 +1,3 @@
-import { createClient } from "@/utils/supabase/server"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -7,6 +6,8 @@ import remarkGfm from "remark-gfm"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 import { Metadata } from "next"
+import { fetchQuery } from "convex/nextjs"
+import { api } from "../../../../convex/_generated/api"
 
 interface BlogPostPageProps {
     params: {
@@ -15,12 +16,7 @@ interface BlogPostPageProps {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-    const supabase = await createClient()
-    const { data: post } = await supabase
-        .from("blog_posts")
-        .select("title, description, cover_image")
-        .eq("slug", params.slug)
-        .single()
+    const post = await fetchQuery(api.blog.getPostBySlug, { slug: params.slug })
 
     if (!post) {
         return {
@@ -40,14 +36,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const supabase = await createClient()
-
-    const { data: post } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("slug", params.slug)
-        .eq("status", "published")
-        .single()
+    const post = await fetchQuery(api.blog.getPostBySlug, { slug: params.slug })
 
     if (!post) {
         notFound()
@@ -65,7 +54,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <header className="space-y-6 mb-12 text-center">
                 <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
-                    <time dateTime={post.created_at}>
+                    <time dateTime={new Date(post.created_at).toISOString()}>
                         {new Date(post.created_at).toLocaleDateString(undefined, {
                             year: "numeric",
                             month: "long",

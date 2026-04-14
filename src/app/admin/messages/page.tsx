@@ -1,12 +1,19 @@
-import { createClient } from "@/utils/supabase/server"
+"use client"
 
-export default async function AdminMessagesPage() {
-    const supabase = await createClient()
+import { useQuery } from "convex/react"
+import { api } from "../../../../convex/_generated/api"
+import { useAdminAuth } from "@/hooks/useAdminAuth"
 
-    const { data: messages } = await supabase
-        .from("contact_messages")
-        .select("*")
-        .order("created_at", { ascending: false })
+export default function AdminMessagesPage() {
+    const { token } = useAdminAuth()
+    const messages = useQuery(api.messages.getMessages, token ? { token } : "skip")
+
+    if (!messages) {
+        return <div className="space-y-6">
+            <h1 className="text-3xl font-bold">Messages</h1>
+            <div>Loading...</div>
+        </div>
+    }
 
     return (
         <div className="space-y-6">
@@ -14,7 +21,7 @@ export default async function AdminMessagesPage() {
 
             <div className="space-y-4">
                 {messages?.map(msg => (
-                    <div key={msg.id} className="p-4 bg-white dark:bg-black border rounded-lg">
+                    <div key={msg._id} className="p-4 bg-white dark:bg-black border rounded-lg">
                         <p><strong>Name:</strong> {msg.name}</p>
                         <p><strong>Email:</strong> {msg.email}</p>
                         <p className="mt-2 whitespace-pre-line">{msg.message}</p>

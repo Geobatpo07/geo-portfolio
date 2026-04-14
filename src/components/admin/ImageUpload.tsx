@@ -1,7 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { createClient } from "@/utils/supabase/client"
+import { useMutation, useQuery } from "convex/react"
+import { api } from "../../../convex/_generated/api"
+import { useAdminAuth } from "@/hooks/useAdminAuth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Upload, X, Image as ImageIcon } from "lucide-react"
@@ -15,7 +17,8 @@ interface ImageUploadProps {
 
 export function ImageUpload({ value, onChange, onRemove }: ImageUploadProps) {
     const [uploading, setUploading] = useState(false)
-    const supabase = createClient()
+    const { token } = useAdminAuth()
+    const generateUploadUrl = useMutation(api.storage.generateUploadUrl)
 
     async function onUpload(event: React.ChangeEvent<HTMLInputElement>) {
         try {
@@ -23,20 +26,25 @@ export function ImageUpload({ value, onChange, onRemove }: ImageUploadProps) {
             const file = event.target.files?.[0]
             if (!file) return
 
-            const fileExt = file.name.split(".").pop()
-            const fileName = `${Math.random()}.${fileExt}`
-            const filePath = `${fileName}`
+            // Get upload URL from Convex
+            const uploadUrl = await generateUploadUrl({ token })
 
-            const { error: uploadError } = await supabase.storage
-                .from("blog-images")
-                .upload(filePath, file)
+            // Upload the file
+            const result = await fetch(uploadUrl, {
+                method: "POST",
+                headers: { "Content-Type": file.type },
+                body: file,
+            })
 
-            if (uploadError) {
-                throw uploadError
+            if (!result.ok) {
+                throw new Error("Upload failed")
             }
 
-            const { data } = supabase.storage.from("blog-images").getPublicUrl(filePath)
-            onChange(data.publicUrl)
+            const { storageId } = await result.json()
+
+            // Get the public URL
+            const imageUrl = `${process.env.NEXT_PUBLIC_CONVEX_URL}/api/storage/${storageId}`
+            onChange(imageUrl)
         } catch (error) {
             console.error("Error uploading image:", error)
             alert("Error uploading image")

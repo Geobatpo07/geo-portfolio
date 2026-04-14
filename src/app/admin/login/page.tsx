@@ -4,10 +4,17 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useMutation } from "convex/react"
+import { api } from "../../../../convex/_generated/api"
+import { useAdminAuth } from "@/hooks/useAdminAuth"
+import { useRouter } from "next/navigation"
 
 export default function AdminLoginPage() {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
+    const loginMutation = useMutation(api.admin.login)
+    const { login } = useAdminAuth()
+    const router = useRouter()
 
     async function handleLogin(e: any) {
         e.preventDefault()
@@ -17,18 +24,15 @@ export default function AdminLoginPage() {
         const email = e.currentTarget.email.value
         const password = e.currentTarget.password.value
 
-        const res = await fetch("/api/admin/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-        })
-
-        setLoading(false)
-
-        if (res.ok) {
-            window.location.href = "/admin/dashboard"
-        } else {
-            setError("Invalid credentials")
+        try {
+            const { token } = await loginMutation({ email, password })
+            login(token)
+            router.push("/admin/dashboard")
+        } catch (err: any) {
+            console.error(err)
+            setError(err.message || "Invalid credentials")
+        } finally {
+            setLoading(false)
         }
     }
 

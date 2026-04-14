@@ -10,7 +10,10 @@ import { ImageUpload } from "@/components/admin/ImageUpload"
 import { MarkdownEditor } from "@/components/admin/MarkdownEditor"
 import { Loader2, Save, ArrowLeft } from "lucide-react"
 import Link from "next/link"
-import { createClient } from "@/utils/supabase/client"
+import { useMutation } from "convex/react"
+import { api } from "../../../convex/_generated/api"
+import { Id } from "../../../convex/_generated/dataModel"
+import { useAdminAuth } from "@/hooks/useAdminAuth"
 
 interface BlogPostFormProps {
     initialData?: any
@@ -18,16 +21,17 @@ interface BlogPostFormProps {
 
 export function BlogPostForm({ initialData }: BlogPostFormProps) {
     const router = useRouter()
-    const supabase = createClient()
+    const createPost = useMutation(api.blog.createPost)
+    const updatePost = useMutation(api.blog.updatePost)
+    const { token } = useAdminAuth()
+
     const [loading, setLoading] = useState(false)
-    const [formData, setFormData] = useState({
-        title: initialData?.title || "",
-        slug: initialData?.slug || "",
-        description: initialData?.description || "",
-        content: initialData?.content || "",
-        cover_image: initialData?.cover_image || "",
-        status: initialData?.status || "draft",
-    })
+    const [title, setTitle] = useState(initialData?.title || "")
+    const [slug, setSlug] = useState(initialData?.slug || "")
+    const [description, setDescription] = useState(initialData?.description || "")
+    const [content, setContent] = useState(initialData?.content || "")
+    const [coverImage, setCoverImage] = useState(initialData?.cover_image || "")
+    const [isPublished, setIsPublished] = useState(initialData?.status === "published")
 
     const generateSlug = (title: string) => {
         return title
@@ -37,41 +41,45 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
     }
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const title = e.target.value
-        setFormData((prev) => ({
-            ...prev,
-            title,
-            slug: !initialData ? generateSlug(title) : prev.slug,
-        }))
+        const newTitle = e.target.value
+        setTitle(newTitle)
+        if (!initialData) {
+            setSlug(generateSlug(newTitle))
+        }
     }
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
         setLoading(true)
 
         try {
-            const endpoint = initialData ? "/api/blog/update" : "/api/blog/create"
-            const dataToSave = {
-                ...formData,
-                ...(initialData && { id: initialData.id }),
+            if (initialData) {
+                await updatePost({
+                    id: initialData._id,
+                    title,
+                    slug,
+                    description,
+                    content,
+                    cover_image: coverImage,
+                    status: isPublished ? "published" : "draft",
+                    token,
+                })
+            } else {
+                await createPost({
+                    title,
+                    slug,
+                    description,
+                    content,
+                    cover_image: coverImage,
+                    status: isPublished ? "published" : "draft",
+                    token,
+                })
             }
-
-            const response = await fetch(endpoint, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(dataToSave),
-            })
-
-            if (!response.ok) {
-                const errorData = await response.json()
-                throw new Error(errorData.error || "Failed to save post")
-            }
-
             router.push("/admin/blog")
             router.refresh()
         } catch (error) {
-            console.error("Error saving post:", error)
-            alert(`Failed to save post: ${error instanceof Error ? error.message : "Unknown error"}`)
+            console.error("Failed to save post:", error)
+            alert("Failed to save post")
         } finally {
             setLoading(false)
         }
@@ -93,10 +101,8 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
                         <Switch
-                            checked={formData.status === "published"}
-                            onCheckedChange={(checked) =>
-                                setFormData({ ...formData, status: checked ? "published" : "draft" })
-                            }
+                            checked={isPublished}
+                            onCheckedChange={setIsPublished}
                         />
                         <Label>Published</Label>
                     </div>
@@ -113,7 +119,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                     <div className="space-y-2">
                         <Label>Title</Label>
                         <Input
-                            value={formData.title}
+                            value={title}
                             onChange={handleTitleChange}
                             placeholder="Post title"
                             required
@@ -123,8 +129,8 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                     <div className="space-y-2">
                         <Label>Slug</Label>
                         <Input
-                            value={formData.slug}
-                            onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+                            value={slug}
+                            onChange={(e) => setSlug(e.target.value)}
                             placeholder="post-url-slug"
                             required
                         />
@@ -133,8 +139,8 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                     <div className="space-y-2">
                         <Label>Description</Label>
                         <Input
-                            value={formData.description}
-                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                             placeholder="Short description for SEO and previews"
                         />
                     </div>
@@ -142,8 +148,8 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                     <div className="space-y-2">
                         <Label>Content</Label>
                         <MarkdownEditor
-                            value={formData.content}
-                            onChange={(value) => setFormData({ ...formData, content: value })}
+                            value={content}
+                            onChange={setContent}
                         />
                     </div>
                 </div>
@@ -152,13 +158,11 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                     <div className="space-y-2">
                         <Label>Cover Image</Label>
                         <ImageUpload
-                            value={formData.cover_image}
-                            onChange={(url) => setFormData({ ...formData, cover_image: url })}
-                            onRemove={() => setFormData({ ...formData, cover_image: "" })}
+                            value={coverImage}
+                            onChange={setCoverImage}
+                            onRemove={() => setCoverImage("")}
                         />
                     </div>
-
-                    {/* Tags could go here later */}
                 </div>
             </div>
         </form>
