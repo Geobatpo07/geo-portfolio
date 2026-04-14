@@ -25,7 +25,7 @@ export function generatePersonSchema() {
     sameAs: [
       "https://github.com/Geobatpo07",
       "https://www.linkedin.com/in/geobatpo07/",
-      "https://twitter.com/geobatpo07",
+      "https://twitter.com/GeovanyLAG07",
     ],
   };
 }

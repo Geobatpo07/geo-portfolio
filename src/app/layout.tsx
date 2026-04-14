@@ -65,8 +65,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@geobatpo07",
-    creator: "@geobatpo07",
+    site: "@GeovanyLAG07",
+    creator: "@GeovanyLAG07",
     title: "Geovany Batista Polo LAGUERRE | Data Scientist & Engineer",
     description:
       "Data Scientist and Engineer specializing in MLOps, Big Data Analytics, and Environmental Modeling",
