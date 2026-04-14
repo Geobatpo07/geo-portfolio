@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface TOCItem {
@@ -26,7 +25,12 @@ export function TableOfContents() {
                     level: Number(elem.tagName.substring(1)),
                 }
             })
-        setHeadings(elements)
+
+        // Initialize headings immediately if elements are found
+        if (elements.length > 0) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            setHeadings(elements)
+        }
 
         const observer = new IntersectionObserver(
             (entries) => {

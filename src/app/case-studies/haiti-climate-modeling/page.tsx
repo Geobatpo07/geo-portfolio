@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Calendar, Tag, FileText } from "lucide-react"
+import { ArrowLeft, Calendar, FileText } from "lucide-react"
 import Link from "next/link"
 
 export default function HaitiClimateModelingPage() {
@@ -30,7 +30,7 @@ export default function HaitiClimateModelingPage() {
                     <Badge variant="outline">Scientific Research</Badge>
 
                     <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
-                        Mathematical Modeling of Haiti's Tropical Climate
+                        Mathematical Modeling of Haiti&apos;s Tropical Climate
                     </h1>
 
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -61,12 +61,12 @@ export default function HaitiClimateModelingPage() {
                             This case study explores the application of mathematical modeling techniques to understand and simulate
                             the tropical climate dynamics of Haiti. Using Ordinary Differential Equations (ODEs) and Partial Differential
                             Equations (PDEs), we developed computational models to analyze temperature variations, precipitation patterns,
-                            and seasonal climate shifts characteristic of Haiti's tropical environment.
+                            and seasonal climate shifts characteristic of Haiti&apos;s tropical environment.
                         </p>
 
                         <h2>Problem Statement</h2>
                         <p>
-                            Haiti's tropical climate is influenced by complex interactions between atmospheric pressure systems,
+                            Haiti&apos;s tropical climate is influenced by complex interactions between atmospheric pressure systems,
                             ocean currents, topographical features, and seasonal weather patterns. Understanding these dynamics is
                             critical for:
                         </p>
@@ -127,7 +127,7 @@ export default function HaitiClimateModelingPage() {
 
                         <h2>Key Findings</h2>
                         <ul>
-                            <li>The model successfully reproduced Haiti's bimodal rainfall pattern with peaks in May and October</li>
+                            <li>The model successfully reproduced Haiti&apos;s bimodal rainfall pattern with peaks in May and October</li>
                             <li>Temperature variations showed strong correlation with elevation and coastal proximity</li>
                             <li>Seasonal transitions were accurately captured through the differential equation framework</li>
                             <li>The model identified critical sensitivity to initial conditions in precipitation forecasting</li>
@@ -170,7 +170,7 @@ export default function HaitiClimateModelingPage() {
                         <h2>Conclusions</h2>
                         <p>
                             Mathematical modeling using ODE/PDE frameworks provides a powerful approach to understanding
-                            Haiti's tropical climate. This case study demonstrates the effectiveness of computational methods
+                            Haiti&apos;s tropical climate. This case study demonstrates the effectiveness of computational methods
                             in climate science and highlights the importance of interdisciplinary approaches combining
                             mathematics, physics, and data science.
                         </p>

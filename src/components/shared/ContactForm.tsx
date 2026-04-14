@@ -79,7 +79,7 @@ export function ContactForm() {
                     {success && (
                         <div className="p-3 rounded-md bg-green-500/15 text-green-600 dark:text-green-400 border border-green-500/20 flex items-center gap-2 text-sm">
                             <CheckCircle2 className="h-4 w-4" />
-                            <span>Message sent successfully! I'll get back to you soon.</span>
+                            <span>Message sent successfully! I&apos;ll get back to you soon.</span>
                         </div>
                     )}
 

@@ -14,7 +14,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface ChartProps {
-    data: any[]
+    data: Array<Record<string, unknown>>
     type?: "line" | "area"
     title?: string
     dataKey: string

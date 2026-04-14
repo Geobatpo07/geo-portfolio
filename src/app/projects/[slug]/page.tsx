@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { notFound } from "next/navigation"
 
 // This is a simplified version — MDX support can be added later
 export default async function ProjectPost({ params }: { params: Promise<{ slug: string }> }) {
@@ -41,12 +42,11 @@ export default async function ProjectPost({ params }: { params: Promise<{ slug: 
         }
     }
 
-    const project =
-        projectData[slug] || {
-            title: "Project Not Found",
-            tags: [],
-            content: "This project does not exist."
-        }
+    const project = projectData[slug]
+
+    if (!project) {
+        notFound()
+    }
 
     return (
         <div className="container py-10 max-w-3xl">

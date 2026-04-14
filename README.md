@@ -4,7 +4,7 @@ This is a Data Science Portfolio website built with Next.js, Tailwind CSS, ShadC
 
 ## Features
 
-- **Next.js 14+ (App Router)**: Modern React framework.
+- **Next.js 16+ (App Router)**: Modern React framework.
 - **Tailwind CSS**: Utility-first CSS framework.
 - **ShadCN UI**: Reusable components built with Radix UI and Tailwind CSS.
 - **MDX**: Markdown for the component era, used for blog posts and project case studies.
@@ -57,6 +57,57 @@ Also update `src/lib/data.ts` to include the post in the list.
 
 This project is optimized for deployment on Vercel.
 
+## Docker
+
+Default mapping:
+- Host port: `3001`
+- Container port: `3000`
+
+### Build and run with Docker
+
+1. Build the image:
+    ```bash
+    docker build -t geo-portfolio:latest .
+    ```
+
+2. Run the container:
+    ```bash
+    docker run --rm -p 3001:3000 --env-file .env.local geo-portfolio:latest
+    ```
+
+3. Open [http://localhost:3001](http://localhost:3001).
+
+### Run with Docker Compose
+
+1. Start the app:
+    ```bash
+    docker compose up --build
+    ```
+
+2. Open [http://localhost:3001](http://localhost:3001).
+
+Optional: override the host port with `APP_PORT`.
+
+PowerShell:
+```powershell
+$env:APP_PORT="3010"; docker compose up --build
+```
+
+Bash:
+```bash
+APP_PORT=3010 docker compose up --build
+```
+
+3. Stop the app:
+    ```bash
+    docker compose down
+    ```
+
+### Docker Environment Variables
+
+- `RESEND_API_KEY`: enables email sending in `/api/contact`.
+- If `RESEND_API_KEY` is missing, the app still runs, but `/api/contact` returns `503`.
+
 ### Deploy to Vercel
 
 1. Push your code to a GitHub repository.
@@ -66,7 +117,7 @@ This project is optimized for deployment on Vercel.
 
 ### Environment Variables
 
-No environment variables are required for the basic setup.
+The contact form requires `RESEND_API_KEY` to send messages through Resend.
 
 ## Project Structure
 

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Clock, ArrowRight } from "lucide-react"
+import { Calendar, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Post } from "@/lib/mdx"
 
@@ -27,24 +27,25 @@ export function BlogCard({ post }: BlogCardProps) {
                     </CardHeader>
                     <CardContent className="p-6">
                         <div className="flex gap-2 mb-4 flex-wrap">
-                            {post.frontMatter.tags?.slice(0, 3).map((tag: string) => (
-                                <Badge key={tag} variant="secondary" className="text-xs">
-                                    {tag}
-                                </Badge>
-                            ))}
+                            {Array.isArray(post.frontMatter.tags) &&
+                                post.frontMatter.tags.slice(0, 3).map((tag: string) => (
+                                    <Badge key={tag} variant="secondary" className="text-xs">
+                                        {tag}
+                                    </Badge>
+                                ))}
                         </div>
                         <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                            {post.frontMatter.title}
+                            {String(post.frontMatter.title ?? "")}
                         </h3>
                         <p className="text-muted-foreground line-clamp-3 mb-4">
-                            {post.frontMatter.description}
+                            {String(post.frontMatter.description ?? "")}
                         </p>
                     </CardContent>
                     <CardFooter className="p-6 pt-0 flex items-center justify-between text-sm text-muted-foreground">
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-1">
                                 <Calendar className="h-4 w-4" />
-                                <span>{post.frontMatter.date}</span>
+                                <span>{String(post.frontMatter.date ?? "")}</span>
                             </div>
                             {/* Reading time would be calculated here or passed in */}
                         </div>

@@ -6,7 +6,7 @@ import { SkillBadge } from "@/components/shared/SkillBadge"
 import { Button } from "@/components/ui/button"
 import { projects, skills, blogPosts } from "@/lib/data"
 import Link from "next/link"
-import { ArrowRight, Code2, Database, Cloud, Wrench, Brain } from "lucide-react"
+import { ArrowRight, Code2, Database, Cloud, Wrench, Brain, ExternalLink, FlaskConical } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { motion } from "framer-motion"
 
@@ -17,6 +17,23 @@ const skillIcons = {
   cloud: Cloud,
   tools: Wrench,
 }
+
+const researchHighlights = [
+  {
+    title: "Modélisation de l’exposition humaine au chlordécone",
+    description:
+      "Continuous-time compartmental ODE systems to model environmental transfer pathways and human exposure dynamics in tropical ecosystems.",
+    tags: ["Applied Mathematics", "Environmental Modeling", "ODE Systems"],
+    href: "https://geovanylaguerre.net/publication/2026-02-01-modelisation-exposition-chlordecone",
+  },
+  {
+    title: "Exploring Finite Fields and Their Character Theory",
+    description:
+      "Research on additive characters, orthogonality relations, and algebraic structures in finite fields with theoretical and computational implications.",
+    tags: ["Pure Mathematics", "Finite Fields", "Scientific Computing"],
+    href: "https://geovanylaguerre.net/publication/2025-04-01-finite-fields-character-theory",
+  },
+]
 
 export default function Home() {
   return (
@@ -63,6 +80,73 @@ export default function Home() {
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Research Highlights Section */}
+      <section className="container">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="space-y-8"
+        >
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              Research <span className="gradient-text">Highlights</span>
+            </h2>
+            <p className="text-muted-foreground mt-2">
+              Two flagship academic directions connecting mathematical rigor and real-world impact.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {researchHighlights.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full hover-lift border-2 hover:border-indigo-400/40 transition-all duration-300 group bg-gradient-to-br from-indigo-500/5 via-transparent to-pink-500/5">
+                  <CardHeader>
+                    <div className="inline-flex w-fit items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-200 mb-3">
+                      <FlaskConical className="h-3.5 w-3.5" />
+                      Academic Project
+                    </div>
+                    <CardTitle className="group-hover:text-primary transition-colors">
+                      {item.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm leading-relaxed">
+                      {item.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-foreground/80"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-indigo-300 hover:text-indigo-200 transition-colors"
+                    >
+                      Explore on Academic Site
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </section>

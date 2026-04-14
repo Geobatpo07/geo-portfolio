@@ -44,7 +44,7 @@ export default function VisualizationsPage() {
                             </div>
                             <CardDescription>
                                 Mathematical modeling of cyclone dynamics using ODE/PDE numerical solutions.
-                                This visualization demonstrates the radial velocity profile near the cyclone's eye.
+                                This visualization demonstrates the radial velocity profile near the cyclone&apos;s eye.
                             </CardDescription>
                         </CardHeader>
                         <CardContent>

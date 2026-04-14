@@ -1,94 +1,25 @@
-"use client"
+import { getAllFilesFrontMatter } from "@/lib/mdx"
+import BlogPageClient from "@/components/blog/BlogPageClient"
 
-import { useState, useCallback } from "react"
-import { BlogHero } from "@/components/blog/BlogHero"
-import { SearchFilter } from "@/components/blog/SearchFilter"
-import { BlogCard } from "@/components/blog/BlogCard"
-import { blogPosts } from "@/lib/data"
-import { getAllTags } from "@/lib/blog"
-import { motion, AnimatePresence } from "framer-motion"
+export default async function BlogPage() {
+    const posts = await getAllFilesFrontMatter("blog")
 
-// Convert data to Post type structure for compatibility
-const posts = blogPosts.map(post => ({
-    slug: post.slug,
-    frontMatter: {
-        title: post.title,
-        date: post.date,
-        description: post.description,
-        tags: post.tags || ["Data Science", "Engineering"],
-    },
-    content: ""
-}))
-
-export default function BlogPage() {
-    const [filteredPosts, setFilteredPosts] = useState(posts)
-    const [selectedTag, setSelectedTag] = useState<string | null>(null)
-
-    const allTags = getAllTags(posts)
-
-    const handleSearch = useCallback((query: string) => {
-        const lowerQuery = query.toLowerCase()
-        const filtered = posts.filter(post => {
-            const matchesSearch =
-                post.frontMatter.title.toLowerCase().includes(lowerQuery) ||
-                post.frontMatter.description.toLowerCase().includes(lowerQuery)
-
-            const matchesTag = selectedTag ? post.frontMatter.tags?.includes(selectedTag) : true
-
-            return matchesSearch && matchesTag
+    const normalizedPosts = posts
+        .map((post) => ({
+            slug: post.slug,
+            frontMatter: {
+                title: String(post.title ?? ""),
+                date: String(post.date ?? ""),
+                description: String(post.description ?? ""),
+                tags: Array.isArray(post.tags) ? post.tags : ["Data Science", "Engineering"],
+            },
+            content: "",
+        }))
+        .sort((a, b) => {
+            const dateA = new Date(String(a.frontMatter.date)).getTime()
+            const dateB = new Date(String(b.frontMatter.date)).getTime()
+            return dateB - dateA
         })
-        setFilteredPosts(filtered)
-    }, [selectedTag])
 
-    const handleTagSelect = useCallback((tag: string | null) => {
-        setSelectedTag(tag)
-        const filtered = posts.filter(post => {
-            const matchesTag = tag ? post.frontMatter.tags?.includes(tag) : true
-            return matchesTag
-        })
-        setFilteredPosts(filtered)
-    }, [])
-
-    return (
-        <div className="min-h-screen pb-20">
-            <BlogHero />
-
-            <div className="container relative z-10 -mt-20">
-                <div className="bg-background/80 backdrop-blur-xl rounded-3xl border shadow-2xl p-8 md:p-12">
-                    <SearchFilter
-                        tags={allTags}
-                        onSearch={handleSearch}
-                        onTagSelect={handleTagSelect}
-                        selectedTag={selectedTag}
-                    />
-
-                    <motion.div
-                        layout
-                        className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                        <AnimatePresence>
-                            {filteredPosts.map((post) => (
-                                <motion.div
-                                    key={post.slug}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <BlogCard post={post} />
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-                    </motion.div>
-
-                    {filteredPosts.length === 0 && (
-                        <div className="text-center py-20 text-muted-foreground">
-                            No posts found matching your criteria.
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
-    )
+    return <BlogPageClient posts={normalizedPosts} />
 }

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "@/components/shared/ThemeToggle"
 import { MobileSidebar } from "@/components/shared/MobileSidebar"
-import { Sparkles } from "lucide-react"
+import { ExternalLink, GraduationCap, Sparkles } from "lucide-react"
 
 const navItems = [
     { name: "Home", href: "/" },
@@ -25,7 +25,7 @@ export function Navbar() {
                             <Sparkles className="h-4 w-4 text-white" />
                         </div>
                         <span className="hidden font-bold text-lg tracking-tight sm:inline-block group-hover:text-primary transition-colors">
-                            Geo's Stories
+                            Geo&apos;s Stories
                         </span>
                     </Link>
                     <nav className="flex items-center space-x-2 text-sm font-medium">
@@ -49,11 +49,21 @@ export function Navbar() {
                         <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
                             <Sparkles className="h-4 w-4 text-white" />
                         </div>
-                        <span className="font-bold text-lg tracking-tight">Geo's Stories</span>
+                        <span className="font-bold text-lg tracking-tight">Geo&apos;s Stories</span>
                     </Link>
                 </div>
 
                 <div className="flex flex-1 items-center justify-end space-x-4">
+                    <a
+                        href="https://geovanylaguerre.net"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hidden lg:inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3 py-1.5 text-xs font-medium text-indigo-200 hover:text-indigo-100 hover:bg-indigo-500/20 transition-colors"
+                    >
+                        <GraduationCap className="h-3.5 w-3.5" />
+                        Academic Portal
+                        <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
                     <ThemeToggle />
                     <MobileSidebar />
                 </div>

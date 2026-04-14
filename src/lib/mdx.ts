@@ -6,7 +6,7 @@ const root = process.cwd()
 
 export interface Post {
     slug: string
-    frontMatter: Record<string, any>
+    frontMatter: Record<string, unknown>
     content: string
 }
 

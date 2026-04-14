@@ -7,7 +7,7 @@ export function Footer() {
         <footer className="border-t border-muted-foreground/10 bg-background/50 backdrop-blur-sm">
             <div className="container flex flex-col items-center justify-center gap-4 py-6 md:flex-row md:justify-between">
                 <p className="text-sm text-muted-foreground">
-                    © {new Date().getFullYear()} Geo's Stories. All rights reserved.
+                    © {new Date().getFullYear()} Geo&apos;s Stories. All rights reserved.
                 </p>
 
                 <div className="flex items-center gap-4">

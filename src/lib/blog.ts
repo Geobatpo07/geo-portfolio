@@ -15,7 +15,7 @@ export function formatDate(dateString: string): string {
 export function getAllTags(posts: Post[]): string[] {
     const tags = new Set<string>()
     posts.forEach((post) => {
-        if (post.frontMatter.tags) {
+        if (Array.isArray(post.frontMatter.tags)) {
             post.frontMatter.tags.forEach((tag: string) => tags.add(tag))
         }
     })
@@ -27,7 +27,9 @@ export function getRelatedPosts(currentSlug: string, tags: string[], posts: Post
         .filter((post) => post.slug !== currentSlug)
         .map((post) => ({
             ...post,
-            relevance: post.frontMatter.tags?.filter((tag: string) => tags.includes(tag)).length || 0,
+            relevance: Array.isArray(post.frontMatter.tags)
+                ? post.frontMatter.tags.filter((tag: string) => tags.includes(tag)).length
+                : 0,
         }))
         .sort((a, b) => b.relevance - a.relevance)
         .slice(0, limit)

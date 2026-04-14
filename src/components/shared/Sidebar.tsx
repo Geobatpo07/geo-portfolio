@@ -1,7 +1,6 @@
 "use client"
 
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
 import {
     Accordion,
     AccordionContent,
@@ -33,7 +32,7 @@ export function Sidebar() {
                         <Sparkles className="h-4 w-4 text-white" />
                     </div>
                     <span className="font-bold text-base tracking-tight group-hover:text-primary transition-colors">
-                        Geo's Stories
+                        Geo&apos;s Stories
                     </span>
                 </Link>
 

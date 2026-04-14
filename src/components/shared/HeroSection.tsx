@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Download, Sparkles } from "lucide-react"
+import { ArrowRight, ExternalLink, GraduationCap, Download, Sparkles } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function HeroSection() {
@@ -25,10 +25,10 @@ export function HeroSection() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm font-medium backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+                    className="inline-flex items-center rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm font-medium backdrop-blur-md shadow-[0_0_15px_rgba(99,102,241,0.2)]"
                 >
-                    <Sparkles className="mr-2 h-4 w-4 text-purple-400" />
-                    <span className="text-purple-100">Available for opportunities</span>
+                    <Sparkles className="mr-2 h-4 w-4 text-indigo-400" />
+                    <span className="text-indigo-100">Applied Mathematics · Scientific Storytelling · Research-Driven Data Science</span>
                 </motion.div>
 
                 <h1 className="text-5xl font-extrabold leading-tight tracking-tight md:text-7xl lg:text-8xl">
@@ -37,16 +37,31 @@ export function HeroSection() {
                         Geovany
                     </span>
                     <br />
-                    <span className="text-foreground/90">Data Science & Analytics Engineer.</span>
+                    <span className="text-foreground/90">Data Scientist & Researcher.</span>
                 </h1>
 
                 <p className="max-w-[700px] text-xl text-muted-foreground md:text-2xl leading-relaxed">
-                    Crafting intelligent systems with{" "}
-                    <span className="font-semibold text-purple-400">MLOps</span>,{" "}
-                    <span className="font-semibold text-blue-400">Big Data</span>, and{" "}
-                    <span className="font-semibold text-pink-400">Analytics</span>.
-                    Building the future of data, one pipeline at a time.
+                    A space where <span className="font-semibold text-indigo-400">complex phenomena</span> are explored through{" "}
+                    <span className="font-semibold text-purple-400">intuition</span>,{" "}
+                    <span className="font-semibold text-blue-400">data</span>, and{" "}
+                    <span className="font-semibold text-pink-400">visual narratives</span>. Building systems that explain the world as much as they predict it.
                 </p>
+
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
+                    <p className="text-sm md:text-base text-foreground/85">
+                        Stories is the practical studio. My academic platform documents research directions in
+                        mathematical modeling, scientific computing, and reproducible data science.
+                    </p>
+                    <a
+                        href="https://geovanylaguerre.net"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-indigo-300 hover:text-indigo-200 transition-colors"
+                    >
+                        Explore the Academic Site
+                        <ExternalLink className="h-4 w-4" />
+                    </a>
+                </div>
             </motion.div>
 
             <motion.div
@@ -64,6 +79,11 @@ export function HeroSection() {
                     <Link href="/about">
                         About Me
                     </Link>
+                </Button>
+                <Button variant="outline" size="lg" asChild className="h-12 px-8 rounded-full border-indigo-400/40 bg-indigo-500/10 hover:bg-indigo-500/20 hover:border-indigo-300/60 backdrop-blur-sm transition-all duration-300 hover:scale-105">
+                    <a href="https://geovanylaguerre.net" target="_blank" rel="noreferrer">
+                        Academic Site <GraduationCap className="ml-2 h-5 w-5" />
+                    </a>
                 </Button>
                 <Button variant="ghost" size="lg" className="h-12 px-8 rounded-full hover:bg-white/5 transition-all duration-300">
                     Download CV <Download className="ml-2 h-5 w-5" />
