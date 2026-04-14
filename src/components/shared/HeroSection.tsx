@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ExternalLink, GraduationCap, Sparkles } from "lucide-react"
+import { ArrowRight, CalendarClock, ExternalLink, GraduationCap, Sparkles } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function HeroSection() {
@@ -88,6 +88,11 @@ export function HeroSection() {
                 <Button variant="ghost" size="lg" asChild className="h-12 px-8 rounded-full hover:bg-white/5 transition-all duration-300">
                     <a href="https://geovanylaguerre.net/cv/" target="_blank" rel="noreferrer">
                         View CV <ExternalLink className="ml-2 h-5 w-5" />
+                    </a>
+                </Button>
+                <Button variant="outline" size="lg" asChild className="h-12 px-8 rounded-full border-cyan-400/40 bg-cyan-500/10 hover:bg-cyan-500/20 hover:border-cyan-300/70 backdrop-blur-sm transition-all duration-300 hover:scale-105">
+                    <a href="https://calendly.com/geobatpo07/30-minutes-de-causerie" target="_blank" rel="noreferrer">
+                        Book a 30-min call <CalendarClock className="ml-2 h-5 w-5" />
                     </a>
                 </Button>
             </motion.div>

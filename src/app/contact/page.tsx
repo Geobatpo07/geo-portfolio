@@ -1,10 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import { ContactForm } from "@/components/shared/ContactForm"
-import { Github, Linkedin, Mail, MessageSquare } from "lucide-react"
+import { CalendlyBookingCard } from "@/components/shared/CalendlyBookingCard"
+import { CalendarClock, Github, Linkedin, Mail, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 const socialLinks = [
     {
@@ -31,6 +33,8 @@ const socialLinks = [
 ]
 
 export default function ContactPage() {
+    const [contactMode, setContactMode] = useState<"message" | "meeting">("message")
+
     return (
         <div className="container py-16 max-w-6xl">
             <motion.div
@@ -112,9 +116,58 @@ export default function ContactPage() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="lg:col-span-3"
+                    className="lg:col-span-3 space-y-6"
                 >
-                    <ContactForm />
+                    <Card className="border-2 border-primary/20 bg-gradient-to-br from-background/90 to-background/70 p-4 md:p-6 backdrop-blur-sm">
+                        <div className="space-y-5">
+                            <div className="rounded-2xl border border-white/10 bg-white/5 p-1.5">
+                                <div className="grid grid-cols-2 gap-1.5">
+                                    <Button
+                                        type="button"
+                                        variant={contactMode === "message" ? "default" : "ghost"}
+                                        className={`rounded-xl ${contactMode === "message" ? "gradient-primary text-white" : "text-foreground/80 hover:text-foreground"}`}
+                                        onClick={() => setContactMode("message")}
+                                    >
+                                        <MessageSquare className="mr-2 h-4 w-4" />
+                                        Write a message
+                                    </Button>
+                                    <Button
+                                        type="button"
+                                        variant={contactMode === "meeting" ? "default" : "ghost"}
+                                        className={`rounded-xl ${contactMode === "meeting" ? "gradient-primary text-white" : "text-foreground/80 hover:text-foreground"}`}
+                                        onClick={() => setContactMode("meeting")}
+                                    >
+                                        <CalendarClock className="mr-2 h-4 w-4" />
+                                        Book a meeting
+                                    </Button>
+                                </div>
+                            </div>
+
+                            <AnimatePresence mode="wait">
+                                {contactMode === "message" ? (
+                                    <motion.div
+                                        key="message-mode"
+                                        initial={{ opacity: 0, y: 12 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -8 }}
+                                        transition={{ duration: 0.25 }}
+                                    >
+                                        <ContactForm embedded />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="meeting-mode"
+                                        initial={{ opacity: 0, y: 12 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -8 }}
+                                        transition={{ duration: 0.25 }}
+                                    >
+                                        <CalendlyBookingCard embedded />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </Card>
                 </motion.div>
             </div>
         </div>

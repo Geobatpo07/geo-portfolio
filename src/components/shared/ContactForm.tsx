@@ -14,7 +14,11 @@ import {
 } from "@/components/ui/card"
 import { Send, User2, Mail, MessageSquare, CheckCircle2, AlertCircle } from "lucide-react"
 
-export function ContactForm() {
+type ContactFormProps = {
+    embedded?: boolean
+}
+
+export function ContactForm({ embedded = false }: ContactFormProps) {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -63,17 +67,17 @@ export function ContactForm() {
         }
     }
 
-    return (
-        <Card className="border-2 hover:border-primary/30 transition-all backdrop-blur-sm bg-background/70">
-            <CardHeader>
+    const formContent = (
+        <>
+            <CardHeader className={embedded ? "px-0 pt-0" : undefined}>
                 <CardTitle className="text-2xl">Send me a message</CardTitle>
                 <CardDescription>
-                    I’d love to hear from you. Whether it’s a project, a collaboration, or a question—reach out anytime.
+                    I’d love to hear from you. Whether it’s a project, a collaboration, or a question, reach out anytime.
                 </CardDescription>
             </CardHeader>
 
             <form onSubmit={handleSubmit}>
-                <CardContent className="space-y-6">
+                <CardContent className={`space-y-6 ${embedded ? "px-0" : ""}`}>
 
                     {/* Success */}
                     {success && (
@@ -151,7 +155,7 @@ export function ContactForm() {
                     </p>
                 </CardContent>
 
-                <CardFooter>
+                <CardFooter className={embedded ? "px-0 pb-0" : undefined}>
                     <Button
                         type="submit"
                         className="w-full gradient-primary text-white hover:opacity-90 transition-opacity"
@@ -163,6 +167,16 @@ export function ContactForm() {
                     </Button>
                 </CardFooter>
             </form>
+        </>
+    )
+
+    if (embedded) {
+        return <div>{formContent}</div>
+    }
+
+    return (
+        <Card className="border-2 hover:border-primary/30 transition-all backdrop-blur-sm bg-background/70">
+            {formContent}
         </Card>
     )
 }
