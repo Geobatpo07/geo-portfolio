@@ -53,7 +53,7 @@ export function CalendlyBookingCard({ embedded = false }: CalendlyBookingCardPro
                         title="Calendly booking"
                         src={calendlyEmbedUrl}
                         width="100%"
-                        height={embedded ? "640" : "700"}
+                        height={embedded ? "760" : "920"}
                         className="w-full rounded-xl"
                     />
                 </div>
