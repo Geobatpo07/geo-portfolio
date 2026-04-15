@@ -1,6 +1,12 @@
-import { createClient } from "@/utils/supabase/server"
+"use client"
+
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useQuery } from "convex/react"
+import { api } from "../../../../../convex/_generated/api"
+import type { Id } from "../../../../../convex/_generated/dataModel"
 import { BlogPostForm } from "@/components/admin/BlogPostForm"
-import { notFound } from "next/navigation"
+import { useAdminAuth } from "@/hooks/useAdminAuth"
 
 interface EditPostPageProps {
     params: {
@@ -8,17 +14,28 @@ interface EditPostPageProps {
     }
 }
 
-export default async function EditPostPage({ params }: EditPostPageProps) {
-    const supabase = await createClient()
+export default function EditPostPage({ params }: EditPostPageProps) {
+    const router = useRouter()
+    const { token, isLoading } = useAdminAuth()
+    const postId = params.id as Id<"blog_posts">
+    const post = useQuery(api.blog.getPostById, token ? { id: postId, token } : "skip")
 
-    const { data: post } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("id", params.id)
-        .single()
+    useEffect(() => {
+        if (!isLoading && !token) {
+            router.push("/admin/login")
+        }
+    }, [isLoading, token, router])
+
+    if (isLoading || !token) {
+        return <div>Loading...</div>
+    }
+
+    if (post === null) {
+        return <div>Post not found.</div>
+    }
 
     if (!post) {
-        notFound()
+        return <div>Loading...</div>
     }
 
     return <BlogPostForm initialData={post} />

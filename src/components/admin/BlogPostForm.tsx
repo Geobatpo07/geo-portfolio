@@ -12,11 +12,11 @@ import { Loader2, Save, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { useMutation } from "convex/react"
 import { api } from "../../../convex/_generated/api"
-import { Id } from "../../../convex/_generated/dataModel"
+import type { Doc } from "../../../convex/_generated/dataModel"
 import { useAdminAuth } from "@/hooks/useAdminAuth"
 
 interface BlogPostFormProps {
-    initialData?: any
+    initialData?: Doc<"blog_posts">
 }
 
 export function BlogPostForm({ initialData }: BlogPostFormProps) {

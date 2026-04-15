@@ -150,13 +150,13 @@ export const createPost = mutation({
         status: v.union(v.literal("draft"), v.literal("published")),
         token: v.optional(v.string()),
     },
-    handler: async (ctx, args) => {
-        await requireAdmin(ctx, args.token)
+    handler: async (ctx, { token, ...postData }) => {
+        await requireAdmin(ctx, token)
 
         // Check if slug already exists
         const existing = await ctx.db
             .query("blog_posts")
-            .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+            .withIndex("by_slug", (q) => q.eq("slug", postData.slug))
             .first()
 
         if (existing) {
@@ -164,7 +164,7 @@ export const createPost = mutation({
         }
 
         const postId = await ctx.db.insert("blog_posts", {
-            ...args,
+            ...postData,
             created_at: now(),
             updated_at: now(),
         })
