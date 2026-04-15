@@ -15,7 +15,7 @@ export function AuthorProfile() {
             <div className="flex-1">
                 <h3 className="font-bold text-lg mb-1">Written by Geovany</h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                    Data Science & Analytics Engineer passionate about building scalable systems and solving complex problems with data.
+                    Data Scientist passionate about building scalable systems and solving complex problems with data.
                 </p>
                 <div className="flex gap-2">
                     <Button variant="ghost" size="sm" asChild>

@@ -67,6 +67,24 @@ def train_model(data, epochs=10):
 
 You can even embed interactive ML demos:
 
+When using the demo, please provide text in English so the model can process it correctly.
+
+This demo uses a simple Naive Bayes sentiment classifier trained on a small set of fixed English examples. It tokenizes the input text, scores each class with Laplace smoothing, and returns the most likely label: Positive, Negative, or Neutral.
+
+You can also provide a JSON array of `{ text, label }` examples to enrich the model before prediction. The demo appends those entries to the base training set for that request.
+
+### Demo Inputs
+
+Use the first field for the sentence you want to analyze, then paste optional enrichment examples as JSON in the second field.
+
+```json
+[
+  { "text": "i really love this product", "label": "Positive" },
+  { "text": "this is disappointing", "label": "Negative" },
+  { "text": "it is acceptable", "label": "Neutral" }
+]
+```
+
 <MLDemo />
 
 ## Conclusion

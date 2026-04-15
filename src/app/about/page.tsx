@@ -43,7 +43,7 @@ export default function AboutPage() {
                 </h1>
 
                 <p className="text-xl text-muted-foreground max-w-3xl">
-                    Data Science & Analytics Engineer with strong mathematical foundations and hands-on experience in data pipelines, analytics, machine learning, and scientific computing.
+                    Data Scientist with strong mathematical foundations and hands-on experience in data pipelines, analytics, machine learning, and scientific computing.
                     I’m passionate about bridging rigorous mathematics with real-world data systems that support strategic decision-making.
                 </p>
             </motion.div>
