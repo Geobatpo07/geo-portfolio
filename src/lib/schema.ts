@@ -1,4 +1,4 @@
-const baseUrl = "https://geovanylaguerre.net";
+const baseUrl = "https://stories.geovanylaguerre.net";
 
 export function generatePersonSchema() {
   return {

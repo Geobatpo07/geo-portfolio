@@ -11,7 +11,7 @@ import { useMDXComponents } from "@/mdx-components"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 
-const baseUrl = "https://geovanylaguerre.net"
+const baseUrl = "https://stories.geovanylaguerre.net"
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params

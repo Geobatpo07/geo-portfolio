@@ -16,7 +16,7 @@ const geistMono = Roboto_Mono({
   subsets: ["latin"],
 });
 
-const baseUrl = "https://geovanylaguerre.net";
+const baseUrl = "https://stories.geovanylaguerre.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

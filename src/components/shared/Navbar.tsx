@@ -55,7 +55,7 @@ export function Navbar() {
 
                 <div className="flex flex-1 items-center justify-end space-x-4">
                     <a
-                        href="https://geovanylaguerre.net"
+                        href="https://stories.geovanylaguerre.net"
                         target="_blank"
                         rel="noreferrer"
                         className="hidden lg:inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3 py-1.5 text-xs font-medium text-indigo-200 hover:text-indigo-100 hover:bg-indigo-500/20 transition-colors"

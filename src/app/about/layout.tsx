@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-const baseUrl = "https://geovanylaguerre.net";
+const baseUrl = "https://stories.geovanylaguerre.net";
 
 export const metadata: Metadata = {
   title: "About Me | Data Scientist, Engineer & Researcher",

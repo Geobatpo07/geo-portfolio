@@ -37,7 +37,7 @@ export function HeroMinimal() {
                             </Link>
                         </Button>
                         <Button variant="outline" size="lg" asChild className="h-12 px-8 text-base">
-                            <a href="https://geovanylaguerre.net/cv/" target="_blank" rel="noreferrer">
+                            <a href="https://stories.geovanylaguerre.net/cv/" target="_blank" rel="noreferrer">
                                 View CV <ExternalLink className="ml-2 h-4 w-4" />
                             </a>
                         </Button>

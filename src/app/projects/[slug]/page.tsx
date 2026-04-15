@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 
-const baseUrl = "https://geovanylaguerre.net"
+const baseUrl = "https://stories.geovanylaguerre.net"
 
 // This is a simplified version — MDX support can be added later
 export default async function ProjectPost({ params }: { params: Promise<{ slug: string }> }) {

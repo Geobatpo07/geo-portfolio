@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { getAllFilesFrontMatter } from "@/lib/mdx";
 import BlogPageClient from "@/components/blog/BlogPageClient";
 
-const baseUrl = "https://geovanylaguerre.net";
+const baseUrl = "https://stories.geovanylaguerre.net";
 
 export const metadata: Metadata = {
   title: "Blog | Data Science & Engineering Insights",
