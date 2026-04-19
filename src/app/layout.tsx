@@ -84,6 +84,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  verification: {
+    google: "rojwBrKhGPieH4IQI9wDKrUFizkw4_68XqrYRMSzte4",
+  },
   alternates: {
     canonical: baseUrl,
     languages: {
