@@ -24,14 +24,14 @@ const researchHighlights = [
     description:
       "Continuous-time compartmental ODE systems to model environmental transfer pathways and human exposure dynamics in tropical ecosystems.",
     tags: ["Applied Mathematics", "Environmental Modeling", "ODE Systems"],
-    href: "https://stories.geovanylaguerre.net/publication/2026-02-01-modelisation-exposition-chlordecone",
+    href: "https://geovanylaguerre.net/publication/2026-02-01-modelisation-exposition-chlordecone",
   },
   {
     title: "Exploring Finite Fields and Their Character Theory",
     description:
       "Research on additive characters, orthogonality relations, and algebraic structures in finite fields with theoretical and computational implications.",
     tags: ["Pure Mathematics", "Finite Fields", "Scientific Computing"],
-    href: "https://stories.geovanylaguerre.net/publication/2025-04-01-finite-fields-character-theory",
+    href: "https://geovanylaguerre.net/publication/2025-04-01-finite-fields-character-theory",
   },
 ]
 

@@ -53,7 +53,7 @@ export function HeroSection() {
                         mathematical modeling, scientific computing, and reproducible data science.
                     </p>
                     <a
-                        href="https://stories.geovanylaguerre.net"
+                        href="https://geovanylaguerre.net/"
                         target="_blank"
                         rel="noreferrer"
                         className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-indigo-300 hover:text-indigo-200 transition-colors"
@@ -81,12 +81,12 @@ export function HeroSection() {
                     </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild className="h-12 px-8 rounded-full border-indigo-400/40 bg-indigo-500/10 hover:bg-indigo-500/20 hover:border-indigo-300/60 backdrop-blur-sm transition-all duration-300 hover:scale-105">
-                    <a href="https://stories.geovanylaguerre.net" target="_blank" rel="noreferrer">
+                    <a href="https://geovanylaguerre.net/" target="_blank" rel="noreferrer">
                         Academic Site <GraduationCap className="ml-2 h-5 w-5" />
                     </a>
                 </Button>
                 <Button variant="ghost" size="lg" asChild className="h-12 px-8 rounded-full hover:bg-white/5 transition-all duration-300">
-                    <a href="https://stories.geovanylaguerre.net/cv/" target="_blank" rel="noreferrer">
+                    <a href="https://geovanylaguerre.net/cv/" target="_blank" rel="noreferrer">
                         View CV <ExternalLink className="ml-2 h-5 w-5" />
                     </a>
                 </Button>
