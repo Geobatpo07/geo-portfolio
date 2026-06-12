@@ -41,7 +41,7 @@ export default async function ProjectPost({ params }: { params: Promise<{ slug: 
             title: "SmartDedup — Intelligent Patient Record Deduplication",
             tags: ["Machine Learning", "Python", "Data Engineering", "FastAPI", "DuckDB"],
             content:
-                "SmartDedup is a production-oriented machine learning system designed to identify duplicate patient medical records in SQL Server databases. It uses the `dedupe` library with custom training data, active learning, and field-level similarity modeling. The system integrates DuckDB for fast preprocessing, Polars for optimized data handling, and FastAPI to expose deduplicated records to other medical systems such as SALVH and PLR. It also includes dashboards for model training, duplicate visualization, and data quality monitoring. This is one of my flagship engineering projects."
+                "SmartDedup is a production-oriented machine learning system designed to identify duplicate patient medical records in SQL Server databases. It uses the `dedupe` library with custom training data, active learning, and field-level similarity modeling. The system integrates DuckDB for fast preprocessing, Polars for optimized data handling, and FastAPI to expose deduplicated records to external medical systems. It also includes dashboards for model training, duplicate visualization, and data quality monitoring. This is one of my flagship engineering projects."
         }
     }
 

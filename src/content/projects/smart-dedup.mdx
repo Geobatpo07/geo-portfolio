@@ -10,7 +10,7 @@ tags: ['Machine Learning', 'Data Engineering', 'Python', 'FastAPI', 'DuckDB']
 SmartDedup is a machine learning–powered system designed to identify and merge duplicate patient records across distributed SQL Server databases.  
 It was developed to address a critical challenge in medical information systems: **ensuring reliable patient identity** in environments where data is entered manually, inconsistently, and often with missing or ambiguous fields.
 
-This project combines **ML modeling**, **data engineering**, **API design**, and **performance optimization** using modern tools such as **dedupe**, **DuckDB**, **Polars**, and **FastAPI**, while integrating directly with existing systems like **SALVH** and **PLR**.
+This project combines **ML modeling**, **data engineering**, **API design**, and **performance optimization** using modern tools such as **dedupe**, **DuckDB**, **Polars**, and **FastAPI**, while integrating with external partner systems.
 
 ---
 
@@ -20,7 +20,7 @@ Healthcare systems in Haiti often manage large databases of patient notification
 - Names may be spelled differently  
 - Mothers' names vary  
 - Dates of birth may be partially missing  
-- MPI/unique identifiers can be inconsistent  
+- Unique identifiers can be inconsistent  
 
 Duplicate records lead to:
 - Incorrect patient history  
@@ -61,7 +61,7 @@ This enables processing **thousands of records efficiently**.
 
 Here is the architecture overview:
 
-SQL Server (SALVH)
+SQL Server
 ↓
 DuckDB + Polars preprocessing
 ↓
@@ -69,7 +69,7 @@ SmartDedup ML model (dedupe)
 ↓
 FastAPI backend
 ↓
-REST API → SALVH / PLR / Partner systems
+REST API → external partner systems
 ↓
 Web Interface (Dashboard, Training, Review)
 
@@ -104,7 +104,7 @@ A REST backend exposes:
 - Batch processing endpoints  
 - Logging endpoints  
 
-Partners like SALVH and PLR can consume these results directly.
+External partners can consume these results directly.
 
 #### **4. Web Interface**
 The planned interface includes dashboards for:

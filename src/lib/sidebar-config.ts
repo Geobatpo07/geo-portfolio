@@ -5,6 +5,7 @@ import {
     BarChart3,
     BookOpen,
     FileText,
+    Smile,
     Github,
     Linkedin,
     type LucideIcon,
@@ -55,6 +56,11 @@ export const sidebarConfig: SidebarGroup[] = [
                 name: "Blog",
                 href: "/blog",
                 icon: BookOpen,
+            },
+            {
+                name: "Fun",
+                href: "/fun",
+                icon: Smile,
             },
             {
                 name: "Certificates",

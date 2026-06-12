@@ -13,7 +13,7 @@ interface Certificate {
     credentialId?: string
     credentialUrl?: string
     skills: string[]
-    category: "Data Analytics" | "Data Engineering" | "Machine Learning" | "Cloud & BI" | "Programming"
+    category: "Data Analytics" | "Data Engineering" | "Machine Learning" | "Cloud & BI" | "Programming" | "Research Ethics"
 }
 
 const certificates: Certificate[] = [
@@ -65,6 +65,13 @@ const certificates: Certificate[] = [
         date: "2024",
         skills: ["Statistics", "Probability", "Machine Learning", "Python", "Data Science"],
         category: "Machine Learning"
+    },
+    {
+        title: "Data or Specimen Only Research",
+        issuer: "CITI Program",
+        date: "2025",
+        skills: ["Research Ethics", "Human Subjects Research", "Data Governance", "Compliance"],
+        category: "Research Ethics"
     }
 ]
 

@@ -58,130 +58,121 @@ export default function HaitiClimateModelingPage() {
                     <CardContent className="pt-6 prose dark:prose-invert max-w-none">
                         <h2>Executive Summary</h2>
                         <p>
-                            This case study explores the application of mathematical modeling techniques to understand and simulate
-                            the tropical climate dynamics of Haiti. Using Ordinary Differential Equations (ODEs) and Partial Differential
-                            Equations (PDEs), we developed computational models to analyze temperature variations, precipitation patterns,
-                            and seasonal climate shifts characteristic of Haiti&apos;s tropical environment.
+                            This case study documents an early research phase on cyclone modeling with ODE/PDE formulations.
+                            The current focus is on exploring numerical schemes and understanding their stability and behavior,
+                            not on delivering calibrated forecasts.
                         </p>
 
                         <h2>Problem Statement</h2>
                         <p>
-                            Haiti&apos;s tropical climate is influenced by complex interactions between atmospheric pressure systems,
-                            ocean currents, topographical features, and seasonal weather patterns. Understanding these dynamics is
-                            critical for:
+                            Cyclone dynamics involve nonlinear interactions between pressure gradients, advection, diffusion,
+                            and rotating-frame effects. At this stage, the objective is to build a reliable numerical foundation
+                            before moving to calibration and operational interpretation.
                         </p>
                         <ul>
-                            <li>Predicting seasonal rainfall and drought patterns</li>
-                            <li>Supporting agricultural planning and disaster preparedness</li>
-                            <li>Analyzing long-term climate trends and variability</li>
-                            <li>Informing policy decisions related to environmental sustainability</li>
+                            <li>Test candidate equation sets for simplified cyclone dynamics</li>
+                            <li>Compare time-stepping and flux schemes under controlled scenarios</li>
+                            <li>Identify numerical artifacts versus physically plausible behavior</li>
+                            <li>Prepare a clean path toward later model calibration</li>
                         </ul>
 
                         <h2>Methodology</h2>
 
                         <h3>1. Mathematical Framework</h3>
                         <p>
-                            The climate model was built using a system of coupled differential equations representing:
+                            The work currently uses simplified ODE/PDE prototypes that represent key cyclone mechanisms:
                         </p>
                         <ul>
-                            <li><strong>Temperature Dynamics</strong>: Heat transfer equations modeling solar radiation absorption,
-                                atmospheric convection, and surface-atmosphere energy exchange</li>
-                            <li><strong>Precipitation Modeling</strong>: Moisture transport equations incorporating evaporation,
-                                condensation, and rainfall mechanisms</li>
-                            <li><strong>Pressure Systems</strong>: Atmospheric pressure gradients driving wind patterns and
-                                tropical storm formation</li>
+                            <li><strong>Advection-dominated transport</strong> for idealized flow behavior</li>
+                            <li><strong>Diffusion and damping terms</strong> to study smoothing and stiffness effects</li>
+                            <li><strong>Reduced radial formulations</strong> to inspect near-eye behavior</li>
                         </ul>
 
                         <h3>2. Numerical Methods</h3>
                         <p>
-                            To solve the governing equations, we implemented several numerical techniques:
+                            The core of the current phase is numerical experimentation:
                         </p>
                         <ul>
-                            <li><strong>Finite Difference Methods</strong>: For spatial discretization of PDEs</li>
-                            <li><strong>Runge-Kutta Schemes</strong>: For time-stepping in ODE systems</li>
-                            <li><strong>Implicit Solvers</strong>: For handling stiff equations in atmospheric dynamics</li>
-                            <li><strong>Adaptive Mesh Refinement</strong>: To capture fine-scale climate features</li>
+                            <li><strong>Lax-Friedrichs</strong> for baseline hyperbolic PDE tests</li>
+                            <li><strong>Runge-Kutta schemes</strong> for explicit ODE/PDE time integration studies</li>
+                            <li><strong>Implicit Euler and theta-method variants</strong> for stiff behavior checks</li>
+                            <li><strong>Cross-method comparisons</strong> to evaluate stability and sensitivity</li>
                         </ul>
 
                         <h3>3. Data Sources</h3>
                         <p>
-                            The model was calibrated and validated using:
+                            Calibration is not done yet. Data integration is being prepared for later stages.
                         </p>
                         <ul>
-                            <li>Historical climate data from Haitian meteorological stations</li>
-                            <li>Satellite-based temperature and precipitation measurements</li>
-                            <li>Reanalysis datasets (ERA5, NCEP/NCAR)</li>
-                            <li>Topographical and land-use data</li>
+                            <li>Definition of target variables and candidate observation sources</li>
+                            <li>Design of preprocessing steps for future assimilation workflows</li>
+                            <li>Early checks on data quality, coverage, and temporal consistency</li>
                         </ul>
 
                         <h2>Technical Implementation</h2>
                         <p>
-                            The computational model was developed in <strong>Python</strong> using:
+                            Prototypes are developed in <strong>Python</strong> with an emphasis on fast iteration:
                         </p>
                         <ul>
-                            <li><strong>NumPy/SciPy</strong>: For numerical computations and ODE/PDE solvers</li>
-                            <li><strong>Matplotlib/Seaborn</strong>: For visualization of climate patterns</li>
-                            <li><strong>Pandas</strong>: For data preprocessing and time-series analysis</li>
-                            <li><strong>Custom Solvers</strong>: Tailored numerical schemes for specific climate equations</li>
+                            <li><strong>NumPy/SciPy</strong> for numerical routines and baseline solvers</li>
+                            <li><strong>Matplotlib</strong> for diagnostic plots and stability inspection</li>
+                            <li><strong>Small custom solver scripts</strong> for controlled experiments</li>
+                            <li><strong>Reproducible notebooks/scripts</strong> to compare schemes consistently</li>
                         </ul>
 
-                        <h2>Key Findings</h2>
+                        <h2>Current Observations</h2>
                         <ul>
-                            <li>The model successfully reproduced Haiti&apos;s bimodal rainfall pattern with peaks in May and October</li>
-                            <li>Temperature variations showed strong correlation with elevation and coastal proximity</li>
-                            <li>Seasonal transitions were accurately captured through the differential equation framework</li>
-                            <li>The model identified critical sensitivity to initial conditions in precipitation forecasting</li>
+                            <li>Scheme choice strongly affects numerical diffusion and stability margins</li>
+                            <li>Explicit methods are informative for behavior analysis but require tighter step control</li>
+                            <li>Implicit variants improve robustness in stiff scenarios at higher computational cost</li>
+                            <li>Some trajectories are highly sensitive to initial and boundary choices</li>
                         </ul>
 
-                        <h2>Challenges & Solutions</h2>
+                        <h2>Limitations at This Stage</h2>
+                        <ul>
+                            <li>No calibrated parameter set yet</li>
+                            <li>No final validation against a fixed benchmark dataset</li>
+                            <li>No operational forecasting claim</li>
+                            <li>Results should be read as exploratory and methodological</li>
+                        </ul>
 
-                        <h3>Challenge 1: Data Scarcity</h3>
+                        <h2>Challenges and Mitigations</h2>
+
+                        <h3>Challenge 1: Numerical Stability Trade-offs</h3>
                         <p>
-                            <strong>Problem</strong>: Limited availability of high-resolution climate data for Haiti.<br />
-                            <strong>Solution</strong>: Combined multiple data sources and used statistical interpolation techniques
-                            to fill gaps in the observational record.
+                            <strong>Problem</strong>: Different schemes behave very differently under the same setup.<br />
+                            <strong>Mitigation</strong>: Standardized test cases and side-by-side solver diagnostics.
                         </p>
 
-                        <h3>Challenge 2: Computational Complexity</h3>
+                        <h3>Challenge 2: Parameter Uncertainty</h3>
                         <p>
-                            <strong>Problem</strong>: High computational cost of solving coupled PDE systems.<br />
-                            <strong>Solution</strong>: Implemented parallel computing strategies and optimized numerical algorithms
-                            for efficiency.
+                            <strong>Problem</strong>: Early prototypes have broad plausible parameter ranges.<br />
+                            <strong>Mitigation</strong>: Sensitivity sweeps to identify influential parameters before calibration.
                         </p>
 
-                        <h3>Challenge 3: Model Validation</h3>
+                        <h3>Challenge 3: Physical vs Numerical Effects</h3>
                         <p>
-                            <strong>Problem</strong>: Ensuring model accuracy across different climate regimes.<br />
-                            <strong>Solution</strong>: Performed extensive sensitivity analysis and cross-validation against
-                            independent datasets.
+                            <strong>Problem</strong>: Distinguishing true model behavior from discretization artifacts.<br />
+                            <strong>Mitigation</strong>: Multi-resolution checks and cross-method comparisons.
                         </p>
 
-                        <h2>Impact & Applications</h2>
+                        <h2>Planned Next Steps</h2>
                         <p>
-                            This research contributes to:
+                            The next phase will focus on moving from exploratory numerics to a defensible calibrated model:
                         </p>
                         <ul>
-                            <li><strong>Scientific Understanding</strong>: Enhanced knowledge of tropical climate dynamics in the Caribbean region</li>
-                            <li><strong>Practical Applications</strong>: Tools for seasonal forecasting and climate risk assessment</li>
-                            <li><strong>Educational Value</strong>: Demonstration of mathematical modeling in environmental science</li>
-                            <li><strong>Future Research</strong>: Foundation for more complex climate-impact studies</li>
+                            <li>Define calibration protocol and objective metrics</li>
+                            <li>Connect selected data sources and lock validation splits</li>
+                            <li>Tune parameters with transparent reproducibility criteria</li>
+                            <li>Only then report quantitative performance claims</li>
                         </ul>
 
-                        <h2>Conclusions</h2>
+                        <h2>Positioning</h2>
                         <p>
-                            Mathematical modeling using ODE/PDE frameworks provides a powerful approach to understanding
-                            Haiti&apos;s tropical climate. This case study demonstrates the effectiveness of computational methods
-                            in climate science and highlights the importance of interdisciplinary approaches combining
-                            mathematics, physics, and data science.
+                            This project is intentionally presented as work in progress. The value today is in the numerical
+                            exploration and method selection process. Calibration and validated conclusions are part of the
+                            upcoming stages.
                         </p>
-
-                        <h2>Future Work</h2>
-                        <ul>
-                            <li>Incorporating machine learning techniques for improved pattern recognition</li>
-                            <li>Extending the model to include climate change scenarios</li>
-                            <li>Developing real-time forecasting capabilities</li>
-                            <li>Integrating socio-economic impact assessments</li>
-                        </ul>
                     </CardContent>
                 </Card>
             </motion.div>

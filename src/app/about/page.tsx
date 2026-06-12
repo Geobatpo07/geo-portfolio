@@ -12,7 +12,8 @@ const certifications = [
     "Microsoft Certified: Fabric Analytics Engineer Associate",
     "Microsoft Certified: Fabric Data Engineer Associate",
     "Apache Spark SQL for Data Analysts",
-    "Microsoft SQL Server Database Design Masterclass"
+    "Microsoft SQL Server Database Design Masterclass",
+    "CITI Program - Data or Specimen Only Research (2025)"
 ]
 
 const goals = [

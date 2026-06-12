@@ -19,11 +19,20 @@ interface CaseStudy {
 const caseStudies: CaseStudy[] = [
     {
         title: "Mathematical Modeling of Haiti's Tropical Climate",
-        description: "A comprehensive study applying differential equations and numerical methods to model the tropical climate patterns of Haiti. This research explores temperature dynamics, precipitation patterns, and seasonal variations using ODE/PDE frameworks and computational simulations.",
+        description: "An early-stage research effort focused on exploring numerical schemes (including Lax-Friedrichs and Runge-Kutta variants) for ODE/PDE cyclone modeling. Calibration and formal validation are planned next steps.",
         date: "2025-11-25",
         tags: ["Mathematics", "Climate Science", "ODE/PDE", "Scientific Computing", "Python"],
         slug: "haiti-climate-modeling",
         category: "Scientific Research"
+    }
+    ,
+    {
+        title: "SmartDedup — Intelligent Patient Record Deduplication",
+        description: "A production-grade ML pipeline for deduplicating patient records across distributed SQL Server sources, combining dedupe, DuckDB, Polars, and FastAPI to deliver high-quality matching and integration with partner systems.",
+        date: "2024-06-01",
+        tags: ["Machine Learning", "Data Engineering", "Python", "FastAPI", "DuckDB"],
+        slug: "smart-dedup",
+        category: "Data Engineering"
     }
 ]
 
